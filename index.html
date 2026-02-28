@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Full Circle Solutions — Strategy, Design & Technology</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@300,400,500,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -14,9 +14,9 @@
       theme: {
         extend: {
           colors: {
-            gold: '#FFD60A',
-            goldLight: '#FFE44D',
-            goldPale: '#FFF8D6',
+            gold: '#F2D264',
+            goldLight: '#F7DE82',
+            goldPale: '#FBF3D5',
             midnight: '#121820',
             deep: '#1A2332',
             slate: '#2A3444',
@@ -28,8 +28,8 @@
             ink: '#1A1A1A',
           },
           fontFamily: {
-            display: ['"DM Serif Display"', 'serif'],
-            body: ['"General Sans"', 'sans-serif'],
+            display: ['"Marcellus"', 'serif'],
+            body: ['"Satoshi"', 'sans-serif'],
           },
         },
       },
@@ -42,11 +42,13 @@
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { background: #FAF6F0; color: #1A1A1A; font-family: 'General Sans', sans-serif; -webkit-font-smoothing: antialiased; }
+    html { background: #FAF6F0; color: #1A1A1A; font-family: 'Satoshi', sans-serif; -webkit-font-smoothing: antialiased; }
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
     .lenis.lenis-stopped { overflow: hidden; }
-    ::selection { background: rgba(255,214,10,0.3); color: #1A1A1A; }
+    ::selection { background: rgba(242,210,100,0.3); color: #1A1A1A; }
+
+    /* ── DISPLAY FONT — Marcellus inscriptional serif ── */
 
     /* ── NAV ── */
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; transition: background 0.5s, box-shadow 0.5s; }
@@ -54,57 +56,79 @@
     .nav.scrolled .nav-link { color: #1A1A1A; }
     .nav.scrolled .nav-brand { color: #1A1A1A; }
     .nav.scrolled .hamburger span { background: #1A1A1A; }
-    .nav-link { color: rgba(255,255,255,0.75); font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; position: relative; transition: color 0.3s; }
-    .nav-link::after { content:''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #FFD60A; transition: width 0.3s cubic-bezier(.25,.1,.25,1); }
-    .nav-link:hover { color: #FFD60A; }
+    .nav-link { color: #1A1A1A; font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; position: relative; transition: color 0.3s; }
+    .nav-link::after { content:''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: #C4623A; transition: width 0.3s cubic-bezier(.25,.1,.25,1); }
+    .nav-link:hover { color: #C4623A; }
     .nav-link:hover::after { width: 100%; }
-    .nav-link:focus-visible { outline: 2px solid #FFD60A; outline-offset: 4px; border-radius: 2px; }
-    .nav-brand { color: #fff; transition: color 0.5s; }
+    .nav-link:focus-visible { outline: 2px solid #C4623A; outline-offset: 4px; border-radius: 2px; }
+    .nav-brand { color: #1A1A1A; transition: color 0.5s; }
 
     /* ── HERO ── */
-    .hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; background: #121820; }
-    .hero-bg { position: absolute; inset: 0; }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.1); will-change: transform; }
-    .hero-grad { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(18,24,32,0.15) 0%, rgba(18,24,32,0.35) 30%, rgba(18,24,32,0.80) 70%, rgba(18,24,32,0.95) 100%); }
-    .hero-content { position: relative; z-index: 2; width: 100%; max-width: 1440px; margin: 0 auto; padding: 7rem clamp(1.5rem,4vw,4rem) clamp(4rem,8vh,6rem); }
-    .hero h1 { font-family: 'DM Serif Display', serif; color: #fff; font-size: clamp(2.75rem, 7vw, 6rem); line-height: 1.02; letter-spacing: -0.025em; }
-    .hero h1 em { font-style: italic; color: #FFD60A; }
-    .hero-tag { display: inline-block; background: rgba(255,214,10,0.15); border: 1px solid rgba(255,214,10,0.25); color: #FFD60A; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.25rem; border-radius: 100px; backdrop-filter: blur(8px); }
+    .hero { position: relative; overflow: hidden; background: #FAF6F0; padding: 10rem 0 5rem; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 1440px; margin: 0 auto; padding: 0 clamp(1.5rem,4vw,4rem); }
+    @media (max-width: 1024px) { .hero-grid { grid-template-columns: 1fr; gap: 3.5rem; } }
+    .hero h1 { font-family: 'Marcellus', serif; color: #1A1A1A; font-size: clamp(2.5rem, 5.5vw, 4.5rem); line-height: 1.08; letter-spacing: -0.015em; }
+    .hero h1 em { font-style: italic; color: #C4623A; }
+    .hero-tag { display: inline-block; background: rgba(26,26,26,0.06); border: 1px solid rgba(26,26,26,0.12); color: #1A1A1A; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.25rem; border-radius: 100px; }
+
+    /* ── HERO COLLAGE ── */
+    .hero-collage { position: relative; height: 480px; width: 100%; }
+    @media (max-width: 1024px) { .hero-collage { height: 400px; max-width: 540px; margin: 0 auto; } }
+    @media (max-width: 640px) { .hero-collage { height: 340px; } }
+    .hero-img-card { position: absolute; border-radius: 16px; overflow: hidden; background: #fff; padding: 6px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+    .hero-img-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+    .hero-img-1 { left: calc(50% - 110px); top: 0; width: 220px; height: 220px; z-index: 2; }
+    .hero-img-2 { right: 0; top: 33%; width: 200px; height: 200px; z-index: 1; }
+    .hero-img-3 { left: 0; bottom: 0; width: 180px; height: 180px; z-index: 1; }
+    @media (max-width: 640px) {
+      .hero-img-1 { width: 170px; height: 170px; left: calc(50% - 85px); }
+      .hero-img-2 { width: 150px; height: 150px; }
+      .hero-img-3 { width: 140px; height: 140px; }
+    }
+    .hero-shape { position: absolute; border-radius: 50%; pointer-events: none; }
+    .hero-shape-1 { width: 56px; height: 56px; background: rgba(242,210,100,0.25); top: -10px; left: 25%; }
+    .hero-shape-2 { width: 44px; height: 44px; background: rgba(196,98,58,0.15); border-radius: 10px; bottom: 5%; right: 22%; }
+    .hero-shape-3 { width: 24px; height: 24px; background: rgba(139,158,130,0.2); bottom: 28%; left: 6%; }
+
+    /* ── HERO STATS ── */
+    .hero-stat { display: flex; align-items: center; gap: 0.75rem; }
+    .hero-stat-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(26,26,26,0.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .hero-stat-icon svg { width: 20px; height: 20px; stroke: #C4623A; fill: none; }
 
     /* ── MARQUEE ── */
-    .marquee-band { background: #FFD60A; color: #121820; overflow: hidden; }
+    .marquee-band { background: #F2D264; color: #121820; overflow: hidden; }
     .marquee-track { display: flex; gap: 3rem; animation: marquee 22s linear infinite; will-change: transform; }
     .marquee-track:hover { animation-play-state: paused; }
     @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .marquee-word { white-space: nowrap; font-family: 'DM Serif Display', serif; font-style: italic; }
+    .marquee-word { white-space: nowrap; font-family: 'Marcellus', serif; }
     .marquee-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(18,24,32,0.25); flex-shrink: 0; align-self: center; }
 
     /* ── BUTTONS ── */
-    .btn-gold { display: inline-flex; align-items: center; gap: 0.625rem; background: #FFD60A; color: #121820; font-weight: 700; font-size: 0.875rem; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.25rem; border-radius: 100px; border: none; cursor: pointer; transition: all 0.35s cubic-bezier(.25,.1,.25,1); }
-    .btn-gold:hover { background: #FFE44D; transform: translateY(-3px); box-shadow: 0 12px 36px rgba(255,214,10,0.3); }
+    .btn-gold { display: inline-flex; align-items: center; gap: 0.625rem; background: #F2D264; color: #121820; font-weight: 700; font-size: 0.875rem; letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none; padding: 1rem 2.25rem; border-radius: 100px; border: none; cursor: pointer; transition: all 0.35s cubic-bezier(.25,.1,.25,1); }
+    .btn-gold:hover { background: #F7DE82; transform: translateY(-3px); box-shadow: 0 12px 36px rgba(242,210,100,0.3); }
     .btn-gold:active { transform: translateY(0) scale(0.98); }
     .btn-gold .arr { transition: transform 0.3s; }
     .btn-gold:hover .arr { transform: translateX(4px); }
-    .btn-ghost { background: transparent; color: #FFD60A; border: 1.5px solid rgba(255,214,10,0.3); }
-    .btn-ghost:hover { background: rgba(255,214,10,0.08); border-color: #FFD60A; box-shadow: 0 12px 36px rgba(255,214,10,0.12); }
+    .btn-ghost { background: transparent; color: #F2D264; border: 1.5px solid rgba(242,210,100,0.3); }
+    .btn-ghost:hover { background: rgba(242,210,100,0.08); border-color: #F2D264; box-shadow: 0 12px 36px rgba(242,210,100,0.12); }
     .btn-dark { background: #121820; color: #FAF6F0; }
     .btn-dark:hover { background: #2A3444; box-shadow: 0 12px 36px rgba(0,0,0,0.15); }
 
     /* ── SERVICE ROW ── */
     .svc-row { border-top: 1px solid rgba(0,0,0,0.07); transition: background 0.35s; }
     .svc-row:last-child { border-bottom: 1px solid rgba(0,0,0,0.07); }
-    .svc-row:hover { background: rgba(255,214,10,0.04); }
-    .svc-row:hover .svc-num { color: #FFD60A; }
+    .svc-row:hover { background: rgba(242,210,100,0.04); }
+    .svc-row:hover .svc-num { color: #F2D264; }
     .svc-row:hover .svc-title { color: #C4623A; }
-    .svc-row:hover .svc-arr { color: #FFD60A; transform: translate(4px,-4px); }
-    .svc-num { font-family: 'DM Serif Display', serif; font-style: italic; color: rgba(0,0,0,0.1); transition: color 0.35s; }
+    .svc-row:hover .svc-arr { color: #F2D264; transform: translate(4px,-4px); }
+    .svc-num { font-family: 'Marcellus', serif; color: rgba(0,0,0,0.1); transition: color 0.35s; }
     .svc-title { transition: color 0.35s; }
     .svc-arr { color: rgba(0,0,0,0.12); transition: all 0.35s; }
 
     /* ── VALUE ── */
     .val-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: all 0.4s; }
-    .val-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, #FFD60A, #FF8C42); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(.25,.1,.25,1); }
-    .val-card:hover { transform: translateY(-6px); border-color: rgba(255,214,10,0.2); }
+    .val-card::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: linear-gradient(90deg, #F2D264, #E8B07A); transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(.25,.1,.25,1); }
+    .val-card:hover { transform: translateY(-6px); border-color: rgba(242,210,100,0.2); }
     .val-card:hover::after { transform: scaleX(1); }
 
     /* ── FAQ ── */
@@ -112,7 +136,7 @@
     .faq-q { display:flex; align-items:center; justify-content:space-between; gap:1.5rem; width:100%; background:none; border:none; cursor:pointer; text-align:left; padding:1.75rem 0; font-weight:600; font-size:1.0625rem; color:#1A1A1A; transition:color 0.3s; }
     .faq-q:hover { color: #C4623A; }
     .faq-ico { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:#F5EDE3; display:flex; align-items:center; justify-content:center; transition:all 0.35s; }
-    .faq-row.open .faq-ico { background:#FFD60A; transform:rotate(45deg); }
+    .faq-row.open .faq-ico { background:#F2D264; transform:rotate(45deg); }
     .faq-a { max-height:0; overflow:hidden; transition:max-height 0.5s cubic-bezier(.25,.1,.25,1), padding 0.5s; }
     .faq-row.open .faq-a { max-height:300px; padding-bottom:1.5rem; }
 
@@ -131,17 +155,17 @@
     /* ── MOBILE MENU ── */
     .mob-menu { position:fixed; inset:0; z-index:99; background:#121820; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:2rem; opacity:0; pointer-events:none; transition:opacity 0.4s; }
     .mob-menu.open { opacity:1; pointer-events:auto; }
-    .mob-link { font-family:'DM Serif Display',serif; font-size:clamp(2rem,6vw,3.5rem); color:#FAF6F0; text-decoration:none; opacity:0; transform:translateY(30px); transition:color 0.3s; }
+    .mob-link { font-family:'Marcellus',serif; font-size:clamp(2rem,6vw,3.5rem); color:#FAF6F0; text-decoration:none; opacity:0; transform:translateY(30px); transition:color 0.3s; }
     .mob-menu.open .mob-link { opacity:1; transform:translateY(0); }
-    .mob-link:hover { color:#FFD60A; }
+    .mob-link:hover { color:#F2D264; }
     .mob-menu.open .mob-link:nth-child(1){transition:opacity .4s .1s,transform .4s .1s,color .3s}
     .mob-menu.open .mob-link:nth-child(2){transition:opacity .4s .15s,transform .4s .15s,color .3s}
     .mob-menu.open .mob-link:nth-child(3){transition:opacity .4s .2s,transform .4s .2s,color .3s}
     .mob-menu.open .mob-link:nth-child(4){transition:opacity .4s .25s,transform .4s .25s,color .3s}
     .mob-menu.open .mob-link:nth-child(5){transition:opacity .4s .3s,transform .4s .3s,color .3s}
     .hamburger { display:flex; flex-direction:column; gap:6px; cursor:pointer; z-index:101; background:none; border:none; padding:4px; }
-    .hamburger:focus-visible { outline: 2px solid #FFD60A; outline-offset: 4px; border-radius: 2px; }
-    .hamburger span { width:24px; height:1.5px; background:#fff; display:block; transition:transform .3s,opacity .3s,background .4s; }
+    .hamburger:focus-visible { outline: 2px solid #C4623A; outline-offset: 4px; border-radius: 2px; }
+    .hamburger span { width:24px; height:1.5px; background:#1A1A1A; display:block; transition:transform .3s,opacity .3s,background .4s; }
     .hamburger.active span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
     .hamburger.active span:nth-child(2){opacity:0}
     .hamburger.active span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
@@ -151,31 +175,31 @@
     .form-field label { display: block; color: rgba(250,246,240,0.5); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.5rem; }
     .form-field input,
     .form-field textarea,
-    .form-field select { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.875rem 1.125rem; color: #FAF6F0; font-family: 'General Sans', sans-serif; font-size: 0.9375rem; transition: all 0.3s; outline: none; -webkit-appearance: none; }
+    .form-field select { width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 0.875rem 1.125rem; color: #FAF6F0; font-family: 'Satoshi', sans-serif; font-size: 0.9375rem; transition: all 0.3s; outline: none; -webkit-appearance: none; }
     .form-field input::placeholder,
     .form-field textarea::placeholder { color: rgba(250,246,240,0.25); }
     .form-field input:focus,
     .form-field textarea:focus,
-    .form-field select:focus { border-color: #FFD60A; background: rgba(255,214,10,0.06); box-shadow: 0 0 0 3px rgba(255,214,10,0.08); }
+    .form-field select:focus { border-color: #F2D264; background: rgba(242,210,100,0.06); box-shadow: 0 0 0 3px rgba(242,210,100,0.08); }
     .form-field textarea { resize: vertical; min-height: 120px; }
     .form-field select { cursor: pointer; color: rgba(250,246,240,0.25); }
     .form-field select.has-value { color: #FAF6F0; }
     .form-field .select-wrap { position: relative; }
     .form-field .select-wrap::after { content: ''; position: absolute; right: 1.125rem; top: 50%; transform: translateY(-50%) rotate(45deg); width: 7px; height: 7px; border-right: 1.5px solid rgba(250,246,240,0.35); border-bottom: 1.5px solid rgba(250,246,240,0.35); pointer-events: none; transition: border-color 0.3s; }
-    .form-field .select-wrap:focus-within::after { border-color: #FFD60A; }
+    .form-field .select-wrap:focus-within::after { border-color: #F2D264; }
     .form-field select option { background: #1A2332; color: #FAF6F0; padding: 0.5rem; }
     .form-success { display: none; text-align: center; padding: 3rem 1.5rem; }
     .form-success.show { display: block; }
-    .form-success .check-circle { width: 64px; height: 64px; border-radius: 50%; background: #FFD60A; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .form-success .check-circle { width: 64px; height: 64px; border-radius: 50%; background: #F2D264; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
     .contact-info-item { display: flex; align-items: center; gap: 0.75rem; color: rgba(250,246,240,0.4); font-size: 0.875rem; transition: color 0.3s; }
-    .contact-info-item:hover { color: #FFD60A; }
-    .contact-info-item svg { flex-shrink: 0; width: 18px; height: 18px; stroke: #FFD60A; opacity: 0.6; }
+    .contact-info-item:hover { color: #F2D264; }
+    .contact-info-item svg { flex-shrink: 0; width: 18px; height: 18px; stroke: #F2D264; opacity: 0.6; }
 
     .footer-link { color:rgba(250,246,240,0.35); text-decoration:none; font-size:0.875rem; transition:color 0.3s; }
-    .footer-link:hover { color:#FFD60A; }
+    .footer-link:hover { color:#F2D264; }
 
     .scroll-line { width:1px; height:48px; background:rgba(255,255,255,0.12); position:relative; overflow:hidden; }
-    .scroll-line::after { content:''; position:absolute; top:-100%; left:0; width:100%; height:100%; background:#FFD60A; animation:pulse 2s ease-in-out infinite; }
+    .scroll-line::after { content:''; position:absolute; top:-100%; left:0; width:100%; height:100%; background:#F2D264; animation:pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%{top:-100%} 50%{top:0%} 100%{top:100%} }
 
     .grain { position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.02; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat:repeat; background-size:128px; }
@@ -189,7 +213,7 @@
   <nav class="nav" id="nav">
     <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between h-[5.5rem]">
       <a href="#" class="relative z-[101] flex items-center">
-        <span class="nav-brand font-display text-2xl tracking-tight">Full Circle<span class="text-gold">.</span></span>
+        <span class="nav-brand font-display text-2xl tracking-tight">Full Circle Solutions<span class="text-gold">.</span></span>
       </a>
       <div class="hidden md:flex items-center gap-10">
         <a href="#services" class="nav-link">Services</a>
@@ -213,31 +237,75 @@
   <!-- HERO                               -->
   <!-- ══════════════════════════════════ -->
   <section class="hero">
-    <div class="hero-bg">
-      <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1920&q=85&auto=format" alt="Vibrant bustling restaurant" id="heroImg">
-    </div>
-    <div class="hero-grad"></div>
-    <div class="hero-content">
-      <div class="hero-tag mb-8" style="opacity:0;transform:translateY(20px);">Hospitality &bull; Strategy &bull; Design</div>
-      <h1 class="hero-h1" style="opacity:0;transform:translateY(60px);">
-        We Build Brands<br>That People<br><em>Remember.</em>
-      </h1>
-      <p class="text-white/65 font-body mt-6 md:mt-8 max-w-lg text-lg leading-relaxed hero-sub" style="opacity:0;transform:translateY(40px);">
-        Strategy, design and technology — woven together to help hospitality and lifestyle brands create unforgettable experiences.
-      </p>
-      <div class="flex flex-wrap gap-4 mt-10 hero-ctas" style="opacity:0;transform:translateY(30px);">
-        <a href="#contact" class="btn-gold">
-          Book a Discovery Call
-          <svg class="arr w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="#services" class="btn-gold btn-ghost">
-          What We Do
-          <svg class="arr w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+    <div class="hero-grid">
+      <!-- Left Column: Text -->
+      <div class="flex flex-col items-start hero-text-col">
+        <div class="hero-tag mb-8" style="opacity:0;transform:translateY(20px);">Hospitality &bull; Strategy &bull; Systems</div>
+        <h1 class="hero-h1" style="opacity:0;transform:translateY(60px);">
+          Smart Systems<br>For Brands That<br><em>Get Booked.</em>
+        </h1>
+        <p class="text-ink/60 font-body mt-6 md:mt-8 max-w-md text-lg leading-relaxed hero-sub" style="opacity:0;transform:translateY(40px);">
+          We combine strategy, design and technology to help hospitality brands get seen, stay booked, and scale with confidence.
+        </p>
+        <div class="flex flex-wrap gap-4 mt-10 hero-ctas" style="opacity:0;transform:translateY(30px);">
+          <a href="#contact" class="btn-gold">
+            Book a Discovery Call
+            <svg class="arr w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#services" class="btn-gold btn-dark">
+            What We Do
+            <svg class="arr w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <!-- Stats -->
+        <div class="flex flex-wrap gap-8 mt-14 hero-stats" style="opacity:0;transform:translateY(20px);">
+          <div class="hero-stat">
+            <div class="hero-stat-icon">
+              <svg stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <p class="text-ink text-xl font-bold leading-tight">50+</p>
+              <p class="text-ink/40 text-sm">Venues served</p>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon">
+              <svg stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div>
+              <p class="text-ink text-xl font-bold leading-tight">100%</p>
+              <p class="text-ink/40 text-sm">Delivery rate</p>
+            </div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-icon">
+              <svg stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <p class="text-ink text-xl font-bold leading-tight">5-in-1</p>
+              <p class="text-ink/40 text-sm">Full service</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flex items-center gap-3 mt-16 hero-scroll" style="opacity:0;">
-        <div class="scroll-line"></div>
-        <span class="text-white/25 text-xs uppercase tracking-widest font-medium">Scroll</span>
+
+      <!-- Right Column: Image Collage -->
+      <div class="hero-collage">
+        <!-- Floating decorative shapes -->
+        <div class="hero-shape hero-shape-1"></div>
+        <div class="hero-shape hero-shape-2"></div>
+        <div class="hero-shape hero-shape-3"></div>
+
+        <!-- Image cards -->
+        <div class="hero-img-card hero-img-1" style="opacity:0;transform:scale(0.85);">
+          <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format" alt="Fine dining restaurant interior">
+        </div>
+        <div class="hero-img-card hero-img-2" style="opacity:0;transform:scale(0.85);">
+          <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&q=80&auto=format" alt="Vibrant cocktail bar with warm lighting">
+        </div>
+        <div class="hero-img-card hero-img-3" style="opacity:0;transform:scale(0.85);">
+          <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80&auto=format" alt="Friends celebrating at a venue">
+        </div>
       </div>
     </div>
   </section>
@@ -246,15 +314,15 @@
   <section class="marquee-band py-4 md:py-5">
     <div class="marquee-track">
       <span class="marquee-word text-2xl md:text-3xl">Strategy</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Branding</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Hospitality</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Experience</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Systems</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Delivery</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Visibility</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Growth</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Digital</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Strategy</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Branding</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Hospitality</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Experience</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Systems</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Delivery</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Visibility</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Growth</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Digital</span><span class="marquee-dot"></span>
     </div>
@@ -266,7 +334,7 @@
   <section class="py-24 md:py-36 px-6 md:px-12 lg:px-16 bg-warm">
     <div class="max-w-[1000px] mx-auto text-center">
       <h2 class="font-display text-ink reveal" style="font-size:clamp(1.75rem,4vw,3.25rem); line-height:1.15; letter-spacing:-0.02em;">
-        Full Circle is a creative consultancy for <span class="text-terracotta">hospitality and lifestyle brands</span> that want to stand out, show up, and <em class="font-display" style="color:#FFD60A;">grow with intention.</em>
+        Smart systems and sharp strategy for <span class="text-terracotta">hospitality brands</span> that want to be seen, stay booked, and <em class="font-display" style="color:#F2D264;">scale with confidence.</em>
       </h2>
     </div>
   </section>
@@ -296,7 +364,7 @@
           <span class="text-terracotta font-body font-semibold text-xs uppercase tracking-[0.15em] reveal block mb-3">What we do</span>
           <h2 class="font-display text-ink reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.08; letter-spacing:-0.02em;">Our Services</h2>
         </div>
-        <p class="text-ink/45 max-w-sm text-sm leading-relaxed reveal">Five disciplines. One team. Everything your brand needs to create moments people talk about.</p>
+        <p class="text-ink/45 max-w-sm text-sm leading-relaxed reveal">Five disciplines. One team. Everything your venue needs to get seen, stay booked, and grow.</p>
       </div>
 
       <div>
@@ -305,7 +373,7 @@
             <span class="svc-num text-3xl md:text-5xl">01</span>
             <div>
               <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Strategy &amp; Advisory</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">Clarity before creativity. We map the landscape, find the gaps, and build a plan that actually works.</p>
+              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">We find what's working, what's not, and where the growth is. Then we build a plan to get you there.</p>
             </div>
           </div>
           <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -316,7 +384,7 @@
             <span class="svc-num text-3xl md:text-5xl">02</span>
             <div>
               <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Brand &amp; Identity</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">From naming to visual identity — we create brands that feel as good as the experience you're serving.</p>
+              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">A brand people recognise and remember. We shape how you look, sound, and show up — everywhere.</p>
             </div>
           </div>
           <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -327,7 +395,7 @@
             <span class="svc-num text-3xl md:text-5xl">03</span>
             <div>
               <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Digital Experience</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">Websites, booking flows, menus, apps — digital that extends the warmth of your physical space.</p>
+              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">Websites, booking flows, and digital touchpoints that convert browsers into guests and keep them coming back.</p>
             </div>
           </div>
           <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -338,7 +406,7 @@
             <span class="svc-num text-3xl md:text-5xl">04</span>
             <div>
               <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Technology &amp; Systems</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">CRM, loyalty, integrations — the backbone that lets your team focus on guests, not admin.</p>
+              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">CRM, loyalty, automations, and integrations — the systems that let your team focus on guests, not admin.</p>
             </div>
           </div>
           <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -349,7 +417,7 @@
             <span class="svc-num text-3xl md:text-5xl">05</span>
             <div>
               <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Growth &amp; Marketing</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">Seats filled, rooms booked, stories shared. Strategy-led growth across every channel that matters.</p>
+              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">SEO, social, paid ads, and delivery platforms — we get you seen and keep the bookings flowing.</p>
             </div>
           </div>
           <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -390,18 +458,18 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="val-card">
           <span class="font-display text-5xl text-gold/20 italic leading-none">01</span>
-          <h3 class="font-display text-white text-xl mt-5 mb-4">We Speak Hospitality</h3>
-          <p class="text-white/50 text-sm leading-relaxed">We know the difference between a service and an experience. Our work is built for the pace, pressure and poetry of hospitality.</p>
+          <h3 class="font-display text-white text-xl mt-5 mb-4">Built For Hospitality</h3>
+          <p class="text-white/50 text-sm leading-relaxed">We know the difference between a venue that's surviving and one that's thriving. Every system we build is designed for how hospitality actually operates.</p>
         </div>
         <div class="val-card">
           <span class="font-display text-5xl text-gold/20 italic leading-none">02</span>
-          <h3 class="font-display text-white text-xl mt-5 mb-4">Your Team, Extended</h3>
-          <p class="text-white/50 text-sm leading-relaxed">We embed with your people. No handoffs, no silos — just seamless collaboration from strategy through to delivery.</p>
+          <h3 class="font-display text-white text-xl mt-5 mb-4">Strategy, Then Systems</h3>
+          <p class="text-white/50 text-sm leading-relaxed">We don't just deliver pretty — we deliver performance. Strategy first, then the systems and tools to make it stick.</p>
         </div>
         <div class="val-card">
           <span class="font-display text-5xl text-gold/20 italic leading-none">03</span>
-          <h3 class="font-display text-white text-xl mt-5 mb-4">Outcomes, Not Outputs</h3>
-          <p class="text-white/50 text-sm leading-relaxed">We measure what matters — covers, bookings, loyalty, revenue. Every decision ties back to how your business actually grows.</p>
+          <h3 class="font-display text-white text-xl mt-5 mb-4">Visibility That Converts</h3>
+          <p class="text-white/50 text-sm leading-relaxed">Being seen is only half of it. We build the full pipeline — from discovery to booking to repeat guest — so growth compounds.</p>
         </div>
       </div>
 
@@ -468,7 +536,7 @@
         <div class="lg:sticky lg:top-32">
           <span class="text-gold font-body font-semibold text-xs uppercase tracking-[0.15em] reveal block mb-4">Get in touch</span>
           <h2 class="font-display text-white reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.08; letter-spacing:-0.02em;">
-            Let's create something<br><em style="color:#FFD60A;">worth talking about.</em>
+            Let's create something<br><em style="color:#F2D264;">worth talking about.</em>
           </h2>
           <p class="text-white/40 mt-6 text-sm leading-relaxed max-w-md reveal">Whether you're opening a new venue, reimagining an existing brand, or scaling across locations — we'd love to hear what you're building.</p>
 
@@ -563,9 +631,9 @@
       <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
         <div class="md:col-span-4">
           <div class="mb-4">
-            <span class="font-display text-cream text-xl">Full Circle<span class="text-gold">.</span></span>
+            <span class="font-display text-cream text-xl">Full Circle Solutions<span class="text-gold">.</span></span>
           </div>
-          <p class="text-cream/30 text-sm leading-relaxed max-w-xs">Strategy, design and technology for hospitality brands that want to be remembered.</p>
+          <p class="text-cream/30 text-sm leading-relaxed max-w-xs">Smart systems and growth strategy for hospitality brands that want to be seen and stay booked.</p>
           <a href="mailto:hello@fullcirclesolutions.com" class="inline-block mt-4 text-gold/50 hover:text-gold text-sm transition-colors">hello@fullcirclesolutions.com</a>
         </div>
         <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
@@ -607,17 +675,23 @@
     const nav = document.getElementById('nav');
     ScrollTrigger.create({ start:'top -80', onUpdate: s => { nav.classList.toggle('scrolled', s.scroll() > 80); } });
 
-    // Hero
+    // Hero text animations
     const tl = gsap.timeline({ delay: 0.2 });
-    tl.to('#heroImg', { scale: 1, duration: 2.5, ease: 'power2.out' })
-      .to('.hero-tag', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.3)
-      .to('.hero-h1', { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out' }, 0.5)
-      .to('.hero-sub', { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, 0.8)
-      .to('.hero-ctas', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 1)
-      .to('.hero-scroll', { opacity: 1, duration: 0.5 }, 1.4);
+    tl.to('.hero-tag', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0.2)
+      .to('.hero-h1', { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out' }, 0.4)
+      .to('.hero-sub', { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, 0.7)
+      .to('.hero-ctas', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.9)
+      .to('.hero-stats', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, 1.1);
 
-    // Hero parallax
-    gsap.to('#heroImg', { y: 200, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+    // Hero image collage — staggered scale-in
+    tl.to('.hero-img-1', { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)' }, 0.5)
+      .to('.hero-img-2', { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)' }, 0.7)
+      .to('.hero-img-3', { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)' }, 0.9);
+
+    // Floating shapes — continuous bob
+    gsap.utils.toArray('.hero-shape').forEach((el, i) => {
+      gsap.to(el, { y: -8, duration: 2.5 + i * 0.4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: i * 0.3 });
+    });
 
     // Reveals
     gsap.utils.toArray('.reveal').forEach(el => {
