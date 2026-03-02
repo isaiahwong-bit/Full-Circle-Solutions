@@ -114,16 +114,47 @@
     .btn-dark { background: #990808; color: #F4F2EF; }
     .btn-dark:hover { background: #B01010; box-shadow: 0 12px 36px rgba(153,8,8,0.2); }
 
-    /* ── SERVICE ROW ── */
-    .svc-row { border-top: 1px solid rgba(0,0,0,0.07); transition: background 0.35s; }
-    .svc-row:last-child { border-bottom: 1px solid rgba(0,0,0,0.07); }
-    .svc-row:hover { background: rgba(237,197,55,0.04); }
-    .svc-row:hover .svc-num { color: #EDC537; }
-    .svc-row:hover .svc-title { color: #F44027; }
-    .svc-row:hover .svc-arr { color: #EDC537; transform: translate(4px,-4px); }
-    .svc-num { font-family: 'Marcellus', serif; color: rgba(0,0,0,0.1); transition: color 0.35s; }
-    .svc-title { transition: color 0.35s; }
-    .svc-arr { color: rgba(0,0,0,0.12); transition: all 0.35s; }
+    /* ── ACCORDION BANDS ── */
+    .band { position:relative; cursor:pointer; overflow:hidden; border-bottom:1px solid rgba(0,0,0,0.07); }
+    .band:first-child { border-top:1px solid rgba(0,0,0,0.07); }
+    .band-collapsed { display:flex; align-items:center; justify-content:space-between; padding:0 clamp(1.5rem,4vw,4rem); padding-left:clamp(3.5rem,6vw,6rem); height:90px; position:relative; z-index:2; }
+    .band-collapsed-left { display:flex; align-items:center; gap:clamp(1rem,2.5vw,2.5rem); }
+    .band-num { font-family:'Marcellus',serif; font-size:2.5rem; color:rgba(0,0,0,0.1); line-height:1; min-width:3.5rem; transition:color 0.35s; }
+    .band-meta { display:flex; flex-direction:column; gap:0.2rem; }
+    .band-stage { font-weight:600; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; color:#F44027; line-height:1; }
+    .band-title-collapsed { font-family:'Marcellus',serif; font-size:1.25rem; color:#1A1A1A; line-height:1.3; }
+    .band-toggle { width:32px; height:32px; border-radius:50%; background:#EBE7E2; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.35s,transform 0.4s cubic-bezier(.25,.1,.25,1); }
+    .band-toggle svg { width:14px; height:14px; transition:stroke 0.35s; }
+    .band.expanded .band-toggle { transform:rotate(45deg); }
+    .band:not(.expanded):hover { background:rgba(237,197,55,0.04) !important; }
+    .band:not(.expanded):hover .band-num { color:#EDC537; }
+    .band-content { max-height:0; overflow:hidden; position:relative; z-index:1; }
+    .band-inner { padding:0 clamp(1.5rem,4vw,4rem) clamp(2.5rem,4vw,4rem); padding-left:clamp(3.5rem,6vw,6rem); display:grid; grid-template-columns:55% 45%; gap:clamp(2rem,4vw,4rem); align-items:start; min-height:380px; }
+    .band-inner-left { position:relative; padding-top:1rem; }
+    .band-big-num { font-family:'Marcellus',serif; font-size:clamp(6rem,12vw,10rem); line-height:0.85; opacity:0.12; position:absolute; top:0; left:-0.5rem; pointer-events:none; user-select:none; }
+    .band-title-expanded { font-family:'Marcellus',serif; font-size:clamp(2rem,4vw,3.5rem); line-height:1.1; position:relative; margin-top:clamp(3.5rem,7vw,5.5rem); }
+    .band-inner-right { padding-top:1.5rem; display:flex; flex-direction:column; gap:1.25rem; }
+    .band-phase-label { font-weight:600; font-size:0.75rem; letter-spacing:0.12em; text-transform:uppercase; line-height:1; }
+    .band-description { font-size:1rem; line-height:1.75; max-width:480px; }
+    .band-pills { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.5rem; }
+    .band-pill { font-size:0.6875rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; padding:0.375rem 0.875rem; border-radius:100px; border:1px solid; line-height:1; }
+    .progress-track { position:absolute; left:clamp(1.25rem,3vw,2.75rem); top:0; bottom:0; width:1px; background:rgba(26,26,26,0.1); z-index:10; pointer-events:none; }
+    .progress-node { position:absolute; left:-3.5px; width:8px; height:8px; border-radius:50%; background:transparent; border:1.5px solid rgba(26,26,26,0.15); transition:all 0.5s cubic-bezier(.25,.1,.25,1); }
+    .progress-node.active { background:#EDC537; border-color:#EDC537; box-shadow:0 0 12px rgba(237,197,55,0.5),0 0 24px rgba(237,197,55,0.2); }
+    @media (max-width:768px) {
+      .band-collapsed { height:80px; padding-left:clamp(2.5rem,5vw,3.5rem); }
+      .band-inner { grid-template-columns:1fr; min-height:auto; padding-left:clamp(2.5rem,5vw,3.5rem); }
+      .band-inner-left { padding-top:0; }
+      .band-big-num { font-size:clamp(4rem,8vw,6rem); position:relative; top:auto; left:auto; margin-bottom:-1rem; }
+      .band-title-expanded { margin-top:0; font-size:clamp(1.75rem,3.5vw,2.5rem); }
+      .band-inner-right { padding-top:0; }
+      .progress-track { left:1rem; }
+      .band-num { font-size:1.75rem; min-width:2.5rem; }
+    }
+    @media (max-width:480px) {
+      .band-collapsed-left { gap:0.75rem; }
+      .band-title-collapsed { font-size:1.05rem; }
+    }
 
     /* ── VALUE ── */
     .val-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: all 0.4s; }
@@ -355,82 +386,170 @@
   </section>
 
   <!-- ══════════════════════════════════ -->
-  <!-- SERVICES                           -->
+  <!-- SERVICES — ACCORDION REVEAL        -->
   <!-- ══════════════════════════════════ -->
-  <section id="services" class="py-24 md:py-36 px-6 md:px-12 lg:px-16">
-    <div class="max-w-[1100px] mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 md:mb-20">
-        <div>
-          <span class="text-terracotta font-body font-semibold text-xs uppercase tracking-[0.15em] reveal block mb-3">What we do</span>
-          <h2 class="font-display text-ink reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.08; letter-spacing:-0.02em;">Our Services</h2>
-        </div>
-        <p class="text-ink/45 max-w-sm text-sm leading-relaxed reveal">Five disciplines. One team. Everything your venue needs to get seen, stay booked, and grow.</p>
+  <section id="services" class="py-24 md:py-36 relative">
+
+    <!-- Section Header -->
+    <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 mb-12" style="padding-left:clamp(3.5rem,6vw,6rem);">
+      <span class="text-terracotta font-body font-semibold text-xs uppercase tracking-[0.15em] reveal block mb-3">What we do</span>
+      <h2 class="font-display text-ink reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.1; letter-spacing:-0.02em;">Launch. Grow. Scale. Exit.</h2>
+      <p class="text-ink/45 mt-3 text-sm reveal" style="font-size:1rem;">One partner for the full circle.</p>
+    </div>
+
+    <!-- Accordion Container -->
+    <div class="relative max-w-[1440px] mx-auto" id="accordion-container">
+
+      <!-- Vertical Progress Track -->
+      <div class="progress-track" id="progress-track">
+        <div class="progress-node" id="node-0" style="top:45px;"></div>
+        <div class="progress-node" id="node-1" style="top:calc(25%);"></div>
+        <div class="progress-node" id="node-2" style="top:calc(50%);"></div>
+        <div class="progress-node" id="node-3" style="top:calc(75%);"></div>
       </div>
 
-      <div>
-        <div class="svc-row py-8 md:py-10 flex items-center justify-between group cursor-pointer">
-          <div class="flex items-baseline gap-6 md:gap-10">
-            <span class="svc-num text-3xl md:text-5xl">01</span>
-            <div>
-              <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Strategy &amp; Advisory</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">We find what's working, what's not, and where the growth is. Then we build a plan to get you there.</p>
+      <!-- BAND 1: LAUNCH -->
+      <div class="band" id="band-0" data-bg-color="#990808" data-text-color="#F4F2EF" data-accent-color="#EDC537" data-stage-color="#EDC537" data-pill-border="rgba(237,197,55,0.3)" data-pill-text="#EDC537" data-toggle-bg="#7A0606" data-toggle-stroke="#F4F2EF">
+        <div class="band-collapsed">
+          <div class="band-collapsed-left">
+            <span class="band-num">01</span>
+            <div class="band-meta">
+              <span class="band-stage">Launch</span>
+              <span class="band-title-collapsed">Branding &amp; Fit-Out</span>
             </div>
           </div>
-          <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          <div class="band-toggle">
+            <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg>
+          </div>
         </div>
-
-        <div class="svc-row py-8 md:py-10 flex items-center justify-between group cursor-pointer">
-          <div class="flex items-baseline gap-6 md:gap-10">
-            <span class="svc-num text-3xl md:text-5xl">02</span>
-            <div>
-              <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Brand &amp; Identity</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">A brand people recognise and remember. We shape how you look, sound, and show up — everywhere.</p>
+        <div class="band-content">
+          <div class="band-inner">
+            <div class="band-inner-left">
+              <div class="band-big-num" style="color:#EDC537;">01</div>
+              <h3 class="band-title-expanded" style="color:#F4F2EF;">Branding<br>&amp; Fit-Out</h3>
+            </div>
+            <div class="band-inner-right">
+              <span class="band-phase-label" style="color:#EDC537;">Phase 01 — Launch</span>
+              <p class="band-description" style="color:rgba(244,242,239,0.85);">From concept to keys. We build your brand identity — logo, visual language, the full look and feel — then bring the venue to life through interior design direction and fit-out. Branding and fit-out can be engaged as a single package or separately.</p>
+              <div class="band-pills">
+                <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Brand Identity</span>
+                <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Visual Language</span>
+                <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Interior Design</span>
+                <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Fit-Out</span>
+              </div>
             </div>
           </div>
-          <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-
-        <div class="svc-row py-8 md:py-10 flex items-center justify-between group cursor-pointer">
-          <div class="flex items-baseline gap-6 md:gap-10">
-            <span class="svc-num text-3xl md:text-5xl">03</span>
-            <div>
-              <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Digital Experience</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">Websites, booking flows, and digital touchpoints that convert browsers into guests and keep them coming back.</p>
-            </div>
-          </div>
-          <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-
-        <div class="svc-row py-8 md:py-10 flex items-center justify-between group cursor-pointer">
-          <div class="flex items-baseline gap-6 md:gap-10">
-            <span class="svc-num text-3xl md:text-5xl">04</span>
-            <div>
-              <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Technology &amp; Systems</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">CRM, loyalty, automations, and integrations — the systems that let your team focus on guests, not admin.</p>
-            </div>
-          </div>
-          <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-        </div>
-
-        <div class="svc-row py-8 md:py-10 flex items-center justify-between group cursor-pointer">
-          <div class="flex items-baseline gap-6 md:gap-10">
-            <span class="svc-num text-3xl md:text-5xl">05</span>
-            <div>
-              <h3 class="svc-title font-display text-ink text-xl md:text-2xl">Growth &amp; Marketing</h3>
-              <p class="text-ink/50 text-sm mt-1.5 max-w-md hidden md:block leading-relaxed">SEO, social, paid ads, and delivery platforms — we get you seen and keep the bookings flowing.</p>
-            </div>
-          </div>
-          <svg class="svc-arr w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </div>
       </div>
 
-      <!-- Services CTA -->
-      <div class="text-center mt-14 reveal">
-        <a href="#contact" class="btn-gold btn-dark">
-          Let's Talk About Your Project
-          <svg class="arr w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+      <!-- BAND 2: GROW -->
+      <div class="band" id="band-1" data-bg-color="#EDEAE5" data-text-color="#1A1A1A" data-accent-color="#F44027" data-stage-color="#F44027" data-pill-border="rgba(244,64,39,0.25)" data-pill-text="#F44027" data-toggle-bg="#EBE7E2" data-toggle-stroke="#1A1A1A">
+        <div class="band-collapsed">
+          <div class="band-collapsed-left">
+            <span class="band-num">02</span>
+            <div class="band-meta">
+              <span class="band-stage">Grow</span>
+              <span class="band-title-collapsed">Delivery Platform Optimisation</span>
+            </div>
+          </div>
+          <div class="band-toggle">
+            <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg>
+          </div>
+        </div>
+        <div class="band-content">
+          <div class="band-inner">
+            <div class="band-inner-left">
+              <div class="band-big-num" style="color:#F44027;">02</div>
+              <h3 class="band-title-expanded" style="color:#1A1A1A;">Delivery Platform<br>Optimisation</h3>
+            </div>
+            <div class="band-inner-right">
+              <span class="band-phase-label" style="color:#F44027;">Phase 02 — Grow</span>
+              <p class="band-description" style="color:rgba(26,26,26,0.7);">Get more out of UberEats, DoorDash, and Menulog. We handle menu optimisation, photography, pricing strategy, platform rankings, and digital storefront management — so you don't have to figure it out yourself.</p>
+              <div class="band-pills">
+                <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Menu Optimisation</span>
+                <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Photography</span>
+                <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Pricing Strategy</span>
+                <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Rankings</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- BAND 3: SCALE -->
+      <div class="band" id="band-2" data-bg-color="#EDC537" data-text-color="#1A1A1A" data-accent-color="#990808" data-stage-color="#990808" data-pill-border="rgba(153,8,8,0.25)" data-pill-text="#990808" data-toggle-bg="rgba(153,8,8,0.1)" data-toggle-stroke="#990808">
+        <div class="band-collapsed">
+          <div class="band-collapsed-left">
+            <span class="band-num">03</span>
+            <div class="band-meta">
+              <span class="band-stage">Scale</span>
+              <span class="band-title-collapsed">Franchise Support</span>
+            </div>
+          </div>
+          <div class="band-toggle">
+            <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg>
+          </div>
+        </div>
+        <div class="band-content">
+          <div class="band-inner">
+            <div class="band-inner-left">
+              <div class="band-big-num" style="color:#990808;">03</div>
+              <h3 class="band-title-expanded" style="color:#1A1A1A;">Franchise<br>Support</h3>
+            </div>
+            <div class="band-inner-right">
+              <span class="band-phase-label" style="color:#990808;">Phase 03 — Scale</span>
+              <p class="band-description" style="color:rgba(26,26,26,0.7);">Whether you're buying into an existing franchise or packaging your own concept to scale, we guide you through the process — from finding the right brand fit to understanding what's involved and connecting you with opportunities.</p>
+              <div class="band-pills">
+                <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Franchise Search</span>
+                <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Brand Fit</span>
+                <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Concept Packaging</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BAND 4: EXIT -->
+      <div class="band" id="band-3" data-bg-color="#1A1A1A" data-text-color="#F4F2EF" data-accent-color="#EDC537" data-stage-color="#EDC537" data-pill-border="rgba(237,197,55,0.3)" data-pill-text="#EDC537" data-toggle-bg="rgba(237,197,55,0.12)" data-toggle-stroke="#EDC537">
+        <div class="band-collapsed">
+          <div class="band-collapsed-left">
+            <span class="band-num">04</span>
+            <div class="band-meta">
+              <span class="band-stage">Exit</span>
+              <span class="band-title-collapsed">Business Sales</span>
+            </div>
+          </div>
+          <div class="band-toggle">
+            <svg viewBox="0 0 14 14" fill="none" stroke="#1A1A1A" stroke-width="1.5" stroke-linecap="round"><line x1="7" y1="2" x2="7" y2="12"/><line x1="2" y1="7" x2="12" y2="7"/></svg>
+          </div>
+        </div>
+        <div class="band-content">
+          <div class="band-inner">
+            <div class="band-inner-left">
+              <div class="band-big-num" style="color:#EDC537;">04</div>
+              <h3 class="band-title-expanded" style="color:#F4F2EF;">Business<br>Sales</h3>
+            </div>
+            <div class="band-inner-right">
+              <span class="band-phase-label" style="color:#EDC537;">Phase 04 — Exit</span>
+              <p class="band-description" style="color:rgba(244,242,239,0.8);">Ready to move on? We help hospitality operators prepare for sale — tidying operations, strengthening brand presentation, getting the numbers in order, and connecting you with the right buyers.</p>
+              <div class="band-pills">
+                <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Sale Preparation</span>
+                <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Operations Tidy</span>
+                <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Buyer Connection</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /accordion-container -->
+
+    <!-- Services CTA -->
+    <div class="text-center mt-14 reveal px-6">
+      <a href="#contact" class="btn-gold btn-dark">
+        Let's Talk About Your Project
+        <svg class="arr w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 
@@ -587,11 +706,10 @@
               <div class="select-wrap">
                 <select id="service" name="service" required onchange="this.classList.toggle('has-value', this.value !== '')">
                   <option value="" disabled selected>Select a service area</option>
-                  <option value="Strategy & Advisory">Strategy & Advisory</option>
-                  <option value="Brand & Identity">Brand & Identity</option>
-                  <option value="Digital Experience">Digital Experience</option>
-                  <option value="Technology & Systems">Technology & Systems</option>
-                  <option value="Growth & Marketing">Growth & Marketing</option>
+                  <option value="Branding & Fit-Out">Branding & Fit-Out</option>
+                  <option value="Delivery Platform Optimisation">Delivery Platform Optimisation</option>
+                  <option value="Franchise Support">Franchise Support</option>
+                  <option value="Business Sales">Business Sales</option>
                   <option value="Something else">Something else</option>
                 </select>
               </div>
@@ -636,12 +754,11 @@
           <p class="text-cream/30 text-sm leading-relaxed max-w-xs">Smart systems and growth strategy for hospitality brands that want to be seen and stay booked.</p>
           <a href="mailto:hello@fullcirclesolutions.com" class="inline-block mt-4 text-gold/50 hover:text-gold text-sm transition-colors">hello@fullcirclesolutions.com</a>
         </div>
-        <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
-          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Strategy</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Advisory</a><a href="#services" class="footer-link">Research</a><a href="#services" class="footer-link">Roadmapping</a></div></div>
-          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Brand</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Identity</a><a href="#services" class="footer-link">Messaging</a><a href="#services" class="footer-link">Guidelines</a></div></div>
-          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Digital</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Web Design</a><a href="#services" class="footer-link">UX / UI</a><a href="#services" class="footer-link">Booking</a></div></div>
-          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Technology</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">CRM</a><a href="#services" class="footer-link">Integrations</a><a href="#services" class="footer-link">Automation</a></div></div>
-          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Growth</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">SEO</a><a href="#services" class="footer-link">Paid Media</a><a href="#services" class="footer-link">Social</a></div></div>
+        <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
+          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Launch</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Brand Identity</a><a href="#services" class="footer-link">Visual Language</a><a href="#services" class="footer-link">Venue Fit-Out</a></div></div>
+          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Grow</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Menu Optimisation</a><a href="#services" class="footer-link">Platform Rankings</a><a href="#services" class="footer-link">Delivery Strategy</a></div></div>
+          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Scale</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Franchise Search</a><a href="#services" class="footer-link">Concept Packaging</a><a href="#services" class="footer-link">Brand Fit</a></div></div>
+          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Exit</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Sale Preparation</a><a href="#services" class="footer-link">Buyer Connection</a><a href="#services" class="footer-link">Operations Tidy</a></div></div>
         </div>
       </div>
       <div class="pt-8 border-t border-white/[0.06] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -708,11 +825,97 @@
       gsap.fromTo(img, { y: -40 }, { y: 40, ease: 'none', scrollTrigger: { trigger: img.closest('section') || img.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
     });
 
-    // Service rows
-    gsap.utils.toArray('.svc-row').forEach((el, i) => {
-      gsap.set(el, { opacity: 0, x: -30 });
-      gsap.to(el, { opacity: 1, x: 0, duration: 0.6, delay: i * 0.08, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' } });
+    // ── ACCORDION BANDS ──
+    const bands = document.querySelectorAll('.band');
+    const progressNodes = document.querySelectorAll('.progress-node');
+    let activeBandIndex = -1;
+    let isBandAnimating = false;
+
+    function positionNodes() {
+      const container = document.getElementById('accordion-container');
+      if (!container) return;
+      bands.forEach((band, i) => {
+        const bandTop = band.offsetTop - container.offsetTop;
+        const collapsedH = band.querySelector('.band-collapsed').offsetHeight;
+        const nodeY = bandTop + (collapsedH / 2);
+        progressNodes[i].style.top = nodeY + 'px';
+      });
+    }
+    positionNodes();
+
+    function expandBand(index) {
+      if (isBandAnimating || index === activeBandIndex) return;
+      isBandAnimating = true;
+      const prevIndex = activeBandIndex;
+      activeBandIndex = index;
+      if (prevIndex >= 0) collapseBandImmediate(prevIndex);
+
+      const band = bands[index];
+      const content = band.querySelector('.band-content');
+      const inner = band.querySelector('.band-inner');
+      const collapsed = band.querySelector('.band-collapsed');
+      const toggle = band.querySelector('.band-toggle');
+      const toggleSvg = toggle.querySelector('svg');
+      const num = collapsed.querySelector('.band-num');
+      const stage = collapsed.querySelector('.band-stage');
+      const titleC = collapsed.querySelector('.band-title-collapsed');
+
+      band.classList.add('expanded');
+      gsap.to(band, { backgroundColor: band.dataset.bgColor, duration: 0.6, ease: 'power3.inOut' });
+      gsap.to(num, { color: band.dataset.accentColor, opacity: 0.25, duration: 0.5, ease: 'power2.inOut' });
+      gsap.to(stage, { color: band.dataset.stageColor, duration: 0.5, ease: 'power2.inOut' });
+      gsap.to(titleC, { color: band.dataset.textColor, duration: 0.5, ease: 'power2.inOut' });
+      gsap.to(toggle, { backgroundColor: band.dataset.toggleBg, rotation: 45, duration: 0.4, ease: 'power2.inOut' });
+      gsap.to(toggleSvg.querySelectorAll('line'), { attr: { stroke: band.dataset.toggleStroke }, duration: 0.4 });
+      gsap.to(content, { maxHeight: 520, duration: 0.6, ease: 'power3.inOut', onComplete: () => { isBandAnimating = false; positionNodes(); ScrollTrigger.refresh(); } });
+      gsap.fromTo(inner.children, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.1, delay: 0.15, ease: 'power2.out' });
+      progressNodes.forEach((node, i) => { node.classList.toggle('active', i === index); });
+    }
+
+    function collapseBandImmediate(index) {
+      const band = bands[index];
+      const content = band.querySelector('.band-content');
+      const collapsed = band.querySelector('.band-collapsed');
+      const toggle = band.querySelector('.band-toggle');
+      const toggleSvg = toggle.querySelector('svg');
+      band.classList.remove('expanded');
+      gsap.to(band, { backgroundColor: '#F4F2EF', duration: 0.4, ease: 'power3.inOut' });
+      gsap.to(collapsed.querySelector('.band-num'), { color: 'rgba(26,26,26,0.12)', opacity: 1, duration: 0.35, ease: 'power2.inOut' });
+      gsap.to(collapsed.querySelector('.band-stage'), { color: '#F44027', duration: 0.35, ease: 'power2.inOut' });
+      gsap.to(collapsed.querySelector('.band-title-collapsed'), { color: '#1A1A1A', duration: 0.35, ease: 'power2.inOut' });
+      gsap.to(toggle, { backgroundColor: '#EBE7E2', rotation: 0, duration: 0.35, ease: 'power2.inOut' });
+      gsap.to(toggleSvg.querySelectorAll('line'), { attr: { stroke: '#1A1A1A' }, duration: 0.35 });
+      gsap.to(content, { maxHeight: 0, duration: 0.4, ease: 'power3.inOut', onComplete: positionNodes });
+    }
+
+    // Click handlers
+    bands.forEach((band, i) => {
+      band.addEventListener('click', () => {
+        if (isBandAnimating) return;
+        if (activeBandIndex === i) {
+          isBandAnimating = true;
+          collapseBandImmediate(i);
+          progressNodes[i].classList.remove('active');
+          activeBandIndex = -1;
+          setTimeout(() => { isBandAnimating = false; ScrollTrigger.refresh(); }, 450);
+        } else {
+          expandBand(i);
+        }
+      });
     });
+
+    // Scroll triggers for auto-expand
+    bands.forEach((band, i) => {
+      ScrollTrigger.create({
+        trigger: band,
+        start: 'top center',
+        end: 'bottom center',
+        onEnter: () => { if (!isBandAnimating) expandBand(i); },
+        onEnterBack: () => { if (!isBandAnimating) expandBand(i); },
+      });
+    });
+
+    window.addEventListener('resize', () => { positionNodes(); ScrollTrigger.refresh(); });
 
     // Value cards
     gsap.utils.toArray('.val-card').forEach((el, i) => {

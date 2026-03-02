@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Circle Solutions — The Grid Magazine</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: '#EDC537',
+            goldLight: '#F2D769',
+            goldPale: '#FBF0D0',
+            midnight: '#990808',
+            deep: '#7A0606',
+            slate: '#B01010',
+            terracotta: '#F44027',
+            cream: '#F4F2EF',
+            warm: '#EBE7E2',
+            ink: '#1A1A1A',
+          },
+          fontFamily: {
+            display: ['"Marcellus"', 'serif'],
+            body: ['"Satoshi"', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: #F4F2EF; color: #1A1A1A; font-family: 'Satoshi', sans-serif; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { overflow-x: hidden; }
+    ::selection { background: rgba(237,197,55,0.3); color: #1A1A1A; }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(244,242,239,0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+
+    /* ── GRID ── */
+    .svc-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 8px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .svc-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── CELLS ── */
+    .svc-cell {
+      border-radius: 20px;
+      padding: clamp(2.5rem, 4vw, 4rem);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(.25,.1,.25,1), box-shadow 0.4s cubic-bezier(.25,.1,.25,1);
+    }
+    .svc-cell:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+
+    /* ── TOP LINE ── */
+    .svc-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.8s cubic-bezier(.25,.1,.25,1);
+    }
+    .svc-line.revealed {
+      transform: scaleX(1);
+    }
+
+    /* ── GHOST NUMBER ── */
+    .svc-ghost {
+      position: absolute;
+      bottom: -1.5rem;
+      right: 1rem;
+      font-family: 'Marcellus', serif;
+      font-size: clamp(8rem, 14vw, 14rem);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0;
+      transition: opacity 0.8s ease 0.3s;
+    }
+    .svc-ghost.revealed {
+      opacity: 1;
+    }
+
+    /* ── PILLS ── */
+    .svc-pill {
+      display: inline-block;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* ── SVG CONNECTOR ── */
+    .svc-connector {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+    @media (max-width: 768px) {
+      .svc-connector { display: none; }
+    }
+
+    /* ── GRAIN ── */
+    .grain {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    /* ── CONCEPT LABEL ── */
+    .concept-hero {
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+  </style>
+</head>
+<body class="bg-cream font-body">
+
+  <!-- GRAIN OVERLAY -->
+  <div class="grain"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="max-w-[1200px] mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2 text-ink no-underline group">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-x-1">
+          <path d="M19 12H5"/>
+          <path d="M12 19l-7-7 7-7"/>
+        </svg>
+        <span class="font-body text-[0.8125rem] font-medium tracking-wide uppercase">Back</span>
+      </a>
+      <span class="font-display text-ink text-lg tracking-tight">Full Circle Solutions</span>
+      <div class="w-[60px]"></div>
+    </div>
+  </nav>
+
+  <!-- CONCEPT HERO / SPACER -->
+  <section class="concept-hero">
+    <span class="inline-block bg-ink/[0.05] border border-ink/[0.1] text-ink font-body text-[0.75rem] font-semibold tracking-[0.15em] uppercase px-5 py-2 rounded-full mb-8">
+      Design Mockup
+    </span>
+    <h1 class="font-display text-ink" style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1;">
+      Concept A: The Grid Magazine
+    </h1>
+    <p class="font-body text-ink/40 text-sm mt-4 max-w-md">
+      An editorial bento grid approach to presenting the Full Circle lifecycle. Scroll down to see the services section.
+    </p>
+    <div class="mt-10 animate-bounce">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="text-ink/30">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- SERVICES SECTION -->
+  <section class="py-24 px-6" id="services">
+
+    <!-- SECTION HEADER -->
+    <div class="max-w-[1200px] mx-auto mb-16">
+      <span class="svc-header-el block font-body text-terracotta text-[0.75rem] font-semibold tracking-[0.15em] uppercase mb-4">
+        What We Do
+      </span>
+      <h2 class="svc-header-el font-display text-ink" style="font-size: clamp(2.25rem, 5vw, 4rem); line-height: 1.08;">
+        Launch. Grow. Scale. Exit.
+      </h2>
+      <p class="svc-header-el font-body text-ink/[0.45] text-base mt-3">
+        One partner for the full circle.
+      </p>
+    </div>
+
+    <!-- GRID WRAPPER (for SVG positioning) -->
+    <div class="max-w-[1200px] mx-auto relative">
+
+      <!-- SVG CONNECTOR -->
+      <svg class="svc-connector" viewBox="0 0 1200 800" preserveAspectRatio="none" fill="none">
+        <path
+          class="svc-path"
+          d="M 340 200 C 540 60, 780 60, 960 200 C 1100 320, 1100 500, 960 600 C 780 740, 540 740, 340 600 C 180 500, 180 320, 340 200"
+          stroke="#EDC537"
+          stroke-width="2"
+          fill="none"
+          opacity="0.5"
+        />
+      </svg>
+
+      <!-- BENTO GRID -->
+      <div class="svc-grid">
+
+        <!-- CELL 1: LAUNCH (large, burgundy) -->
+        <div class="svc-cell" style="background: #990808;">
+          <div class="svc-line" style="background: #EDC537;"></div>
+          <div class="svc-ghost" style="color: rgba(180,40,40,0.06);">01</div>
+
+          <div class="relative z-[1]">
+            <span class="svc-pill mb-6 inline-block" style="color: #EDC537; background: rgba(237,197,55,0.1); border: 1px solid rgba(237,197,55,0.15);">
+              01 / Launch
+            </span>
+
+            <h3 class="font-display mt-2" style="color: #F4F2EF; font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.1;">
+              Branding &amp; Fit-Out
+            </h3>
+
+            <p class="font-body mt-5 leading-relaxed" style="color: rgba(244,242,239,0.7); font-size: 0.9375rem; max-width: 480px;">
+              From concept to keys. We build your brand identity — logo, visual language, the full look and feel — then bring the venue to life through interior design direction and fit-out.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-8">
+              <span class="svc-pill" style="color: #EDC537; border: 1px solid rgba(237,197,55,0.2); background: rgba(237,197,55,0.06);">Brand Identity</span>
+              <span class="svc-pill" style="color: #EDC537; border: 1px solid rgba(237,197,55,0.2); background: rgba(237,197,55,0.06);">Venue Fit-Out</span>
+              <span class="svc-pill" style="color: rgba(244,242,239,0.5); border: 1px solid rgba(244,242,239,0.12); background: transparent;">Engage Separately</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CELL 2: GROW (small, cream) -->
+        <div class="svc-cell" style="background: #F4F2EF; background-image: radial-gradient(ellipse at 100% 100%, rgba(244,64,39,0.06) 0%, transparent 60%);">
+          <div class="svc-line" style="background: #F44027;"></div>
+          <div class="svc-ghost" style="color: rgba(26,26,26,0.04);">02</div>
+
+          <div class="relative z-[1]">
+            <span class="svc-pill mb-6 inline-block" style="color: #F44027; background: rgba(244,64,39,0.06); border: 1px solid rgba(244,64,39,0.12);">
+              02 / Grow
+            </span>
+
+            <h3 class="font-display text-ink mt-2" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.15;">
+              Delivery Platform Optimisation
+            </h3>
+
+            <p class="font-body text-ink/60 mt-5 leading-relaxed" style="font-size: 0.9375rem;">
+              Get more out of UberEats, DoorDash, and Menulog. We handle menu optimisation, photography, pricing strategy, and digital storefront management — turnkey.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-8">
+              <span class="svc-pill" style="color: #1A1A1A; border: 1px solid rgba(26,26,26,0.15); background: transparent;">UberEats</span>
+              <span class="svc-pill" style="color: #1A1A1A; border: 1px solid rgba(26,26,26,0.15); background: transparent;">DoorDash</span>
+              <span class="svc-pill" style="color: #1A1A1A; border: 1px solid rgba(26,26,26,0.15); background: transparent;">Menulog</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CELL 3: SCALE (small, gold) -->
+        <div class="svc-cell" style="background: #EDC537;">
+          <div class="svc-line" style="background: #990808;"></div>
+          <div class="svc-ghost" style="color: rgba(153,8,8,0.06);">03</div>
+
+          <div class="relative z-[1]">
+            <span class="svc-pill mb-6 inline-block" style="color: #990808; background: rgba(153,8,8,0.08); border: 1px solid rgba(153,8,8,0.12);">
+              03 / Scale
+            </span>
+
+            <h3 class="font-display text-ink mt-2" style="font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.15;">
+              Franchise Support
+            </h3>
+
+            <p class="font-body text-ink/70 mt-5 leading-relaxed" style="font-size: 0.9375rem;">
+              Whether you're buying into an existing franchise or packaging your own concept to scale, we guide you through the process — from finding the right fit to connecting you with opportunities.
+            </p>
+          </div>
+        </div>
+
+        <!-- CELL 4: EXIT (large, ink) -->
+        <div class="svc-cell" style="background: #1A1A1A; background-image: radial-gradient(ellipse at 90% 90%, rgba(153,8,8,0.05) 0%, transparent 60%);">
+          <div class="svc-line" style="background: #EDC537;"></div>
+          <div class="svc-ghost" style="color: rgba(255,255,255,0.04);">04</div>
+
+          <div class="relative z-[1]">
+            <span class="svc-pill mb-6 inline-block" style="color: #EDC537; background: rgba(237,197,55,0.08); border: 1px solid rgba(237,197,55,0.15);">
+              04 / Exit
+            </span>
+
+            <h3 class="font-display mt-2" style="color: #F4F2EF; font-size: clamp(1.75rem, 3vw, 2.75rem); line-height: 1.1;">
+              Business Sales
+            </h3>
+
+            <p class="font-body mt-5 leading-relaxed" style="color: rgba(244,242,239,0.6); font-size: 0.9375rem; max-width: 480px;">
+              Ready to move on? We help hospitality operators prepare for sale — tidying operations, strengthening brand presentation, getting the numbers in order, and connecting you with the right buyers.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- /svc-grid -->
+    </div><!-- /wrapper -->
+  </section>
+
+  <!-- SCROLL SPACER -->
+  <div class="h-[40vh]"></div>
+
+  <!-- GSAP ANIMATIONS -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // ── Section header stagger fade-up ──
+      const headerEls = document.querySelectorAll('.svc-header-el');
+      gsap.set(headerEls, { opacity: 0, y: 40 });
+      gsap.to(headerEls, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: '#services',
+          start: 'top 75%',
+          once: true,
+        },
+      });
+
+      // ── Grid cells stagger entrance ──
+      const cells = document.querySelectorAll('.svc-cell');
+      gsap.set(cells, { opacity: 0, y: 60, scale: 0.96 });
+      gsap.to(cells, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.7,
+        ease: 'power3.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: '.svc-grid',
+          start: 'top 70%',
+          once: true,
+          onComplete: () => {
+            // Trigger top-border lines
+            document.querySelectorAll('.svc-line').forEach((line, i) => {
+              setTimeout(() => line.classList.add('revealed'), i * 150);
+            });
+            // Trigger ghost numbers
+            document.querySelectorAll('.svc-ghost').forEach((ghost, i) => {
+              setTimeout(() => ghost.classList.add('revealed'), 200 + i * 150);
+            });
+          },
+        },
+      });
+
+      // ── SVG path draw on scroll ──
+      const path = document.querySelector('.svc-path');
+      if (path) {
+        const length = path.getTotalLength();
+        gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+        gsap.to(path, {
+          strokeDashoffset: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.svc-grid',
+            start: 'top 60%',
+            end: 'bottom 40%',
+            scrub: 0.5,
+          },
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
