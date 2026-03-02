@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Circle Solutions — Strategy, Design & Technology</title>
+  <title>Full Circle Solutions | Hospitality Consulting | Launch, Grow, Scale & Transition</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
@@ -75,20 +75,12 @@
     .hero-collage { position: relative; height: 480px; width: 100%; }
     @media (max-width: 1024px) { .hero-collage { height: 400px; max-width: 540px; margin: 0 auto; } }
     @media (max-width: 640px) { .hero-collage { height: 340px; } }
-    .hero-img-card { position: absolute; border-radius: 16px; overflow: hidden; background: #fff; padding: 6px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
-    .hero-img-card img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
-    .hero-img-1 { left: calc(50% - 110px); top: 0; width: 220px; height: 220px; z-index: 2; }
-    .hero-img-2 { right: 0; top: 33%; width: 200px; height: 200px; z-index: 1; }
-    .hero-img-3 { left: 0; bottom: 0; width: 180px; height: 180px; z-index: 1; }
-    @media (max-width: 640px) {
-      .hero-img-1 { width: 170px; height: 170px; left: calc(50% - 85px); }
-      .hero-img-2 { width: 150px; height: 150px; }
-      .hero-img-3 { width: 140px; height: 140px; }
-    }
-    .hero-shape { position: absolute; border-radius: 50%; pointer-events: none; }
-    .hero-shape-1 { width: 56px; height: 56px; background: rgba(237,197,55,0.25); top: -10px; left: 25%; }
-    .hero-shape-2 { width: 44px; height: 44px; background: rgba(244,64,39,0.15); border-radius: 10px; bottom: 5%; right: 22%; }
-    .hero-shape-3 { width: 24px; height: 24px; background: rgba(139,158,130,0.2); bottom: 28%; left: 6%; }
+    .hero-img-card { position: absolute; overflow: hidden; }
+    .hero-img-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-img-1 { left: 14%; top: 4%; width: 56%; height: 84%; z-index: 2; border-radius: 18px; box-shadow: 0 30px 80px rgba(0,0,0,0.18); }
+    .hero-img-2 { left: 0; bottom: 0; width: 44%; height: 44%; z-index: 3; border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+    .hero-img-3 { right: 0; top: 0; width: 40%; height: 38%; z-index: 1; border-radius: 14px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 2px solid rgba(237,197,55,0.3); }
+    .hero-arc { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0; }
 
     /* ── HERO STATS ── */
     .hero-stat { display: flex; align-items: center; gap: 0.75rem; }
@@ -271,12 +263,14 @@
     <div class="hero-grid">
       <!-- Left Column: Text -->
       <div class="flex flex-col items-start hero-text-col">
-        <div class="hero-tag mb-8" style="opacity:0;transform:translateY(20px);">Hospitality &bull; Strategy &bull; Systems</div>
+        <div class="hero-tag mb-8" style="opacity:0;transform:translateY(20px);">
+          <span style="color:#990808;">Launch</span> &bull; <span style="color:#F44027;">Grow</span> &bull; <span style="color:#EDC537;">Scale</span> &bull; <span style="color:#1A1A1A;">Transition</span>
+        </div>
         <h1 class="hero-h1" style="opacity:0;transform:translateY(60px);">
-          Smart Systems<br>For Brands That<br><em>Get Booked.</em>
+          Hospitality<br>Consulting, Done<br><em>Full Circle.</em>
         </h1>
         <p class="text-ink/60 font-body mt-6 md:mt-8 max-w-md text-lg leading-relaxed hero-sub" style="opacity:0;transform:translateY(40px);">
-          We combine strategy, design and technology to help hospitality brands get seen, stay booked, and scale with confidence.
+          Branding, delivery platforms, franchise support, and transition planning. Whatever stage your venue is at, we've got you covered.
         </p>
         <div class="flex flex-wrap gap-4 mt-10 hero-ctas" style="opacity:0;transform:translateY(30px);">
           <a href="#contact" class="btn-gold">
@@ -313,7 +307,7 @@
               <svg stroke-width="1.5" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
             <div>
-              <p class="text-ink text-xl font-bold leading-tight">5-in-1</p>
+              <p class="text-ink text-xl font-bold leading-tight">4 Pillars</p>
               <p class="text-ink/40 text-sm">Full service</p>
             </div>
           </div>
@@ -322,19 +316,19 @@
 
       <!-- Right Column: Image Collage -->
       <div class="hero-collage">
-        <!-- Floating decorative shapes -->
-        <div class="hero-shape hero-shape-1"></div>
-        <div class="hero-shape hero-shape-2"></div>
-        <div class="hero-shape hero-shape-3"></div>
+        <!-- Decorative gold arc — "full circle" motif -->
+        <svg class="hero-arc" width="400" height="400" viewBox="0 0 400 400" fill="none">
+          <circle cx="200" cy="200" r="180" stroke="rgba(237,197,55,0.15)" stroke-width="1" stroke-dasharray="6 8"/>
+        </svg>
 
-        <!-- Image cards -->
-        <div class="hero-img-card hero-img-1" style="opacity:0;transform:scale(0.85);">
+        <!-- Image collage — layered editorial composition -->
+        <div class="hero-img-card hero-img-1" style="opacity:0;transform:scale(0.94);">
           <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80&auto=format" alt="Fine dining restaurant interior">
         </div>
-        <div class="hero-img-card hero-img-2" style="opacity:0;transform:scale(0.85);">
+        <div class="hero-img-card hero-img-2" style="opacity:0;transform:translateX(-40px);">
           <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&q=80&auto=format" alt="Vibrant cocktail bar with warm lighting">
         </div>
-        <div class="hero-img-card hero-img-3" style="opacity:0;transform:scale(0.85);">
+        <div class="hero-img-card hero-img-3" style="opacity:0;transform:translateX(40px);">
           <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80&auto=format" alt="Friends celebrating at a venue">
         </div>
       </div>
@@ -344,18 +338,22 @@
   <!-- GOLD MARQUEE -->
   <section class="marquee-band py-4 md:py-5">
     <div class="marquee-track">
-      <span class="marquee-word text-2xl md:text-3xl">Strategy</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Systems</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Launch</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Branding</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Grow</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Delivery</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Visibility</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Growth</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Digital</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Strategy</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Systems</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Scale</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Franchise</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Transition</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Sales</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Launch</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Branding</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Grow</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Delivery</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Visibility</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Growth</span><span class="marquee-dot"></span>
-      <span class="marquee-word text-2xl md:text-3xl">Digital</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Scale</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Franchise</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Transition</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Sales</span><span class="marquee-dot"></span>
     </div>
   </section>
 
@@ -365,7 +363,7 @@
   <section class="py-24 md:py-36 px-6 md:px-12 lg:px-16 bg-warm">
     <div class="max-w-[1000px] mx-auto text-center">
       <h2 class="font-display text-ink reveal" style="font-size:clamp(1.75rem,4vw,3.25rem); line-height:1.15; letter-spacing:-0.02em;">
-        Smart systems and sharp strategy for <span class="text-terracotta">hospitality brands</span> that want to be seen, stay booked, and <em class="font-display" style="color:#EDC537;">scale with confidence.</em>
+        From your first venue to your next chapter. <span class="text-terracotta">Branding, delivery platforms, franchise growth,</span> and <em class="font-display" style="color:#EDC537;">transition planning under one roof.</em>
       </h2>
     </div>
   </section>
@@ -393,8 +391,8 @@
     <!-- Section Header -->
     <div class="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 mb-12" style="padding-left:clamp(3.5rem,6vw,6rem);">
       <span class="text-terracotta font-body font-semibold text-xs uppercase tracking-[0.15em] reveal block mb-3">What we do</span>
-      <h2 class="font-display text-ink reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.1; letter-spacing:-0.02em;">Launch. Grow. Scale. Exit.</h2>
-      <p class="text-ink/45 mt-3 text-sm reveal" style="font-size:1rem;">One partner for the full circle.</p>
+      <h2 class="font-display text-ink reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.1; letter-spacing:-0.02em;">Launch. Grow. Scale. Transition.</h2>
+      <p class="text-ink/45 mt-3 text-sm reveal" style="font-size:1rem;">Four services. One partner. The full circle.</p>
     </div>
 
     <!-- Accordion Container -->
@@ -429,8 +427,8 @@
               <h3 class="band-title-expanded" style="color:#F4F2EF;">Branding<br>&amp; Fit-Out</h3>
             </div>
             <div class="band-inner-right">
-              <span class="band-phase-label" style="color:#EDC537;">Phase 01 — Launch</span>
-              <p class="band-description" style="color:rgba(244,242,239,0.85);">From concept to keys. We build your brand identity — logo, visual language, the full look and feel — then bring the venue to life through interior design direction and fit-out. Branding and fit-out can be engaged as a single package or separately.</p>
+              <span class="band-phase-label" style="color:#EDC537;">Phase 01 / Launch</span>
+              <p class="band-description" style="color:rgba(244,242,239,0.85);">From concept to keys. We build your brand identity, your visual language, the full look and feel, then bring the venue to life through interior design direction and fit-out. Branding and fit-out can be engaged as a single package or separately.</p>
               <div class="band-pills">
                 <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Brand Identity</span>
                 <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Visual Language</span>
@@ -463,8 +461,8 @@
               <h3 class="band-title-expanded" style="color:#1A1A1A;">Delivery Platform<br>Optimisation</h3>
             </div>
             <div class="band-inner-right">
-              <span class="band-phase-label" style="color:#F44027;">Phase 02 — Grow</span>
-              <p class="band-description" style="color:rgba(26,26,26,0.7);">Get more out of UberEats, DoorDash, and Menulog. We handle menu optimisation, photography, pricing strategy, platform rankings, and digital storefront management — so you don't have to figure it out yourself.</p>
+              <span class="band-phase-label" style="color:#F44027;">Phase 02 / Grow</span>
+              <p class="band-description" style="color:rgba(26,26,26,0.7);">Get more out of UberEats, DoorDash, and Menulog. We handle menu optimisation, photography, pricing strategy, platform rankings, and digital storefront management so you don't have to figure it out yourself.</p>
               <div class="band-pills">
                 <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Menu Optimisation</span>
                 <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Photography</span>
@@ -497,8 +495,8 @@
               <h3 class="band-title-expanded" style="color:#1A1A1A;">Franchise<br>Support</h3>
             </div>
             <div class="band-inner-right">
-              <span class="band-phase-label" style="color:#990808;">Phase 03 — Scale</span>
-              <p class="band-description" style="color:rgba(26,26,26,0.7);">Whether you're buying into an existing franchise or packaging your own concept to scale, we guide you through the process — from finding the right brand fit to understanding what's involved and connecting you with opportunities.</p>
+              <span class="band-phase-label" style="color:#990808;">Phase 03 / Scale</span>
+              <p class="band-description" style="color:rgba(26,26,26,0.7);">Whether you're buying into an existing franchise or packaging your own concept to scale, we guide you through the full process. Finding the right brand fit, understanding what's involved, and connecting you with opportunities.</p>
               <div class="band-pills">
                 <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Franchise Search</span>
                 <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Brand Fit</span>
@@ -515,8 +513,8 @@
           <div class="band-collapsed-left">
             <span class="band-num">04</span>
             <div class="band-meta">
-              <span class="band-stage">Exit</span>
-              <span class="band-title-collapsed">Business Sales</span>
+              <span class="band-stage">Transition</span>
+              <span class="band-title-collapsed">Transition Planning</span>
             </div>
           </div>
           <div class="band-toggle">
@@ -527,11 +525,11 @@
           <div class="band-inner">
             <div class="band-inner-left">
               <div class="band-big-num" style="color:#EDC537;">04</div>
-              <h3 class="band-title-expanded" style="color:#F4F2EF;">Business<br>Sales</h3>
+              <h3 class="band-title-expanded" style="color:#F4F2EF;">Transition<br>Planning</h3>
             </div>
             <div class="band-inner-right">
-              <span class="band-phase-label" style="color:#EDC537;">Phase 04 — Exit</span>
-              <p class="band-description" style="color:rgba(244,242,239,0.8);">Ready to move on? We help hospitality operators prepare for sale — tidying operations, strengthening brand presentation, getting the numbers in order, and connecting you with the right buyers.</p>
+              <span class="band-phase-label" style="color:#EDC537;">Phase 04 / Transition</span>
+              <p class="band-description" style="color:rgba(244,242,239,0.8);">Ready for the next chapter? We help hospitality operators plan their transition. Tidying operations, strengthening brand presentation, getting the numbers in order, and connecting you with the right buyers.</p>
               <div class="band-pills">
                 <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Sale Preparation</span>
                 <span class="band-pill" style="border-color:rgba(237,197,55,0.3); color:#EDC537;">Operations Tidy</span>
@@ -567,28 +565,35 @@
     <div class="absolute bottom-0 left-0 w-1/2 h-2/3 bg-gradient-to-tr from-terracotta/5 to-transparent pointer-events-none"></div>
 
     <div class="max-w-[1200px] mx-auto relative z-10">
+      <!-- Circular arc motif — draws on scroll -->
+      <div class="absolute inset-0 flex items-center justify-center pointer-events-none" style="opacity:0.06;">
+        <svg viewBox="0 0 500 500" width="480" height="480" fill="none" class="why-arc-svg">
+          <circle cx="250" cy="250" r="220" stroke="#EDC537" stroke-width="1" stroke-dasharray="1382" stroke-dashoffset="1382" class="why-arc-circle"/>
+        </svg>
+      </div>
+
       <div class="text-center mb-16 md:mb-20">
         <span class="text-gold font-body font-semibold text-xs uppercase tracking-[0.15em] reveal block mb-4">Why us</span>
         <h2 class="font-display text-white reveal" style="font-size:clamp(2rem,4.5vw,3.5rem); line-height:1.1; letter-spacing:-0.02em;">
-          Why Hospitality Brands<br>Choose <span class="text-gold">Full Circle</span>
+          Why Hospitality Operators<br>Choose <span class="text-gold">Full Circle</span>
         </h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="val-card">
           <span class="font-display text-5xl text-gold/20 italic leading-none">01</span>
-          <h3 class="font-display text-white text-xl mt-5 mb-4">Built For Hospitality</h3>
-          <p class="text-white/50 text-sm leading-relaxed">We know the difference between a venue that's surviving and one that's thriving. Every system we build is designed for how hospitality actually operates.</p>
+          <h3 class="font-display text-white text-xl mt-5 mb-4">Every Stage, One Partner</h3>
+          <p class="text-white/50 text-sm leading-relaxed">Most consultants do branding or operations or sales. We cover all four: launch, grow, scale, and transition. Nothing falls through the cracks between handoffs.</p>
         </div>
         <div class="val-card">
           <span class="font-display text-5xl text-gold/20 italic leading-none">02</span>
-          <h3 class="font-display text-white text-xl mt-5 mb-4">Strategy, Then Systems</h3>
-          <p class="text-white/50 text-sm leading-relaxed">We don't just deliver pretty — we deliver performance. Strategy first, then the systems and tools to make it stick.</p>
+          <h3 class="font-display text-white text-xl mt-5 mb-4">Hospitality, Not Generic</h3>
+          <p class="text-white/50 text-sm leading-relaxed">We don't do SaaS, retail, or "brands." We do hospitality. Every recommendation is built for how venues actually run, from kitchen to customer.</p>
         </div>
         <div class="val-card">
           <span class="font-display text-5xl text-gold/20 italic leading-none">03</span>
-          <h3 class="font-display text-white text-xl mt-5 mb-4">Visibility That Converts</h3>
-          <p class="text-white/50 text-sm leading-relaxed">Being seen is only half of it. We build the full pipeline — from discovery to booking to repeat guest — so growth compounds.</p>
+          <h3 class="font-display text-white text-xl mt-5 mb-4">Operator-Led Thinking</h3>
+          <p class="text-white/50 text-sm leading-relaxed">We've been in the trenches. Opening venues, running platforms, packaging franchises, selling businesses. This isn't theory. It's lived experience.</p>
         </div>
       </div>
 
@@ -624,17 +629,17 @@
       </div>
 
       <div>
-        <div class="faq-row reveal" style="border-top: 1px solid rgba(0,0,0,0.07);"><button class="faq-q" onclick="toggleFaq(this)"><span>What kind of businesses do you work with?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">Restaurants, cafes, bars, hotels, venues, event spaces, and lifestyle brands. From independent operators to multi-site groups — if you're in hospitality and ready to grow, we're a great fit.</p></div></div>
+        <div class="faq-row reveal" style="border-top: 1px solid rgba(0,0,0,0.07);"><button class="faq-q" onclick="toggleFaq(this)"><span>What kind of businesses do you work with?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">Restaurants, cafes, bars, hotels, venues, event spaces, and lifestyle brands across Melbourne and beyond. From independent operators to multi-site groups, if you're in hospitality and ready to grow, we're a great fit.</p></div></div>
 
-        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>How does an engagement typically start?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">A discovery call. We learn about your venue, your vision and your challenges. Then we come back with a tailored approach — no templates, no assumptions.</p></div></div>
+        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>How does an engagement typically start?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">A discovery call. We learn about your venue, your vision and your challenges. Then we come back with a tailored approach. No templates, no assumptions.</p></div></div>
 
-        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>Do you work with businesses outside Australia?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">Yes. We're Australian-based but work with hospitality brands globally. Great experiences aren't limited by geography.</p></div></div>
+        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>Do you work with businesses outside Australia?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">We're Melbourne based but work with hospitality brands right across Australia. Great experiences aren't limited by postcode.</p></div></div>
 
-        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>How long does a typical project take?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">Brand identities typically run 6–8 weeks, full digital builds 10–16 weeks. We'll give you a clear timeline before anything starts.</p></div></div>
+        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>How long does a typical project take?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">It depends on the service. Branding and fit-out projects typically run 6–10 weeks. Delivery platform optimisation can be up and running within 2–4 weeks. Franchise support and transition planning vary by complexity, so we'll scope it together upfront.</p></div></div>
 
         <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>Can you work alongside our existing team?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">Absolutely. We integrate with in-house marketing, ops and management teams. Think of us as your extended crew.</p></div></div>
 
-        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>What makes Full Circle different?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">We do the full circle — strategy, brand, digital, technology and growth. Everything connects so nothing falls through the cracks. One team, one vision, no silos.</p></div></div>
+        <div class="faq-row reveal"><button class="faq-q" onclick="toggleFaq(this)"><span>What makes Full Circle different?</span><span class="faq-ico"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p class="text-ink/45 text-sm leading-relaxed">We cover the full circle. From branding your first venue to planning your transition when you're ready for the next chapter. Launch, Grow, Scale, and Transition Planning under one roof, so nothing falls through the cracks.</p></div></div>
       </div>
     </div>
   </section>
@@ -657,7 +662,7 @@
           <h2 class="font-display text-white reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.08; letter-spacing:-0.02em;">
             Let's create something<br><em style="color:#EDC537;">worth talking about.</em>
           </h2>
-          <p class="text-white/40 mt-6 text-sm leading-relaxed max-w-md reveal">Whether you're opening a new venue, reimagining an existing brand, or scaling across locations — we'd love to hear what you're building.</p>
+          <p class="text-white/40 mt-6 text-sm leading-relaxed max-w-md reveal">Whether you're launching a new venue, optimising your delivery platforms, exploring franchising, or planning a transition, we'd love to hear where you're at.</p>
 
           <div class="flex flex-col gap-4 mt-10 reveal">
             <a href="mailto:hello@fullcirclesolutions.com" class="contact-info-item" style="text-decoration:none;">
@@ -671,7 +676,7 @@
           </div>
 
           <div class="mt-10 pt-8 border-t border-white/[0.06] reveal">
-            <p class="text-white/25 text-xs leading-relaxed">Based in Brisbane, working with hospitality brands across Australia and beyond.</p>
+            <p class="text-white/25 text-xs leading-relaxed">Based in Melbourne, working with hospitality brands across Australia.</p>
           </div>
         </div>
 
@@ -709,7 +714,7 @@
                   <option value="Branding & Fit-Out">Branding & Fit-Out</option>
                   <option value="Delivery Platform Optimisation">Delivery Platform Optimisation</option>
                   <option value="Franchise Support">Franchise Support</option>
-                  <option value="Business Sales">Business Sales</option>
+                  <option value="Transition Planning">Transition Planning</option>
                   <option value="Something else">Something else</option>
                 </select>
               </div>
@@ -735,7 +740,7 @@
               <svg class="w-7 h-7" fill="none" stroke="#990808" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
             </div>
             <h3 class="font-display text-white text-2xl mb-3">Message sent.</h3>
-            <p class="text-white/40 text-sm leading-relaxed max-w-sm mx-auto">Thanks for reaching out — we'll be in touch within 24 hours to start the conversation.</p>
+            <p class="text-white/40 text-sm leading-relaxed max-w-sm mx-auto">Thanks for reaching out. We'll be in touch within 24 hours to start the conversation.</p>
           </div>
         </div>
 
@@ -751,14 +756,14 @@
           <div class="mb-4">
             <span class="font-display text-cream text-xl">Full Circle Solutions<span class="text-gold">.</span></span>
           </div>
-          <p class="text-cream/30 text-sm leading-relaxed max-w-xs">Smart systems and growth strategy for hospitality brands that want to be seen and stay booked.</p>
+          <p class="text-cream/30 text-sm leading-relaxed max-w-xs">Melbourne based hospitality consulting. Branding, delivery platforms, franchise support, and transition planning.</p>
           <a href="mailto:hello@fullcirclesolutions.com" class="inline-block mt-4 text-gold/50 hover:text-gold text-sm transition-colors">hello@fullcirclesolutions.com</a>
         </div>
         <div class="md:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8">
           <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Launch</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Brand Identity</a><a href="#services" class="footer-link">Visual Language</a><a href="#services" class="footer-link">Venue Fit-Out</a></div></div>
           <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Grow</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Menu Optimisation</a><a href="#services" class="footer-link">Platform Rankings</a><a href="#services" class="footer-link">Delivery Strategy</a></div></div>
           <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Scale</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Franchise Search</a><a href="#services" class="footer-link">Concept Packaging</a><a href="#services" class="footer-link">Brand Fit</a></div></div>
-          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Exit</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Sale Preparation</a><a href="#services" class="footer-link">Buyer Connection</a><a href="#services" class="footer-link">Operations Tidy</a></div></div>
+          <div><h4 class="text-cream/60 font-semibold text-xs uppercase tracking-wider mb-4">Transition</h4><div class="flex flex-col gap-2.5"><a href="#services" class="footer-link">Sale Preparation</a><a href="#services" class="footer-link">Buyer Connection</a><a href="#services" class="footer-link">Operations Tidy</a></div></div>
         </div>
       </div>
       <div class="pt-8 border-t border-white/[0.06] flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -800,15 +805,11 @@
       .to('.hero-ctas', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }, 0.9)
       .to('.hero-stats', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, 1.1);
 
-    // Hero image collage — staggered scale-in
-    tl.to('.hero-img-1', { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)' }, 0.5)
-      .to('.hero-img-2', { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)' }, 0.7)
-      .to('.hero-img-3', { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.4)' }, 0.9);
-
-    // Floating shapes — continuous bob
-    gsap.utils.toArray('.hero-shape').forEach((el, i) => {
-      gsap.to(el, { y: -8, duration: 2.5 + i * 0.4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: i * 0.3 });
-    });
+    // Hero image collage — layered editorial entrance
+    tl.to('.hero-arc', { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0.3)
+      .to('.hero-img-1', { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out' }, 0.4)
+      .to('.hero-img-2', { opacity: 1, x: 0, rotation: -2, duration: 0.8, ease: 'power3.out' }, 0.65)
+      .to('.hero-img-3', { opacity: 1, x: 0, rotation: 2.5, duration: 0.8, ease: 'power3.out' }, 0.8);
 
     // Reveals
     gsap.utils.toArray('.reveal').forEach(el => {
@@ -923,6 +924,16 @@
       gsap.to(el, { opacity: 1, y: 0, duration: 0.8, delay: i * 0.15, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' } });
     });
 
+    // Why Us — circular arc draws on scroll
+    const whyArc = document.querySelector('.why-arc-circle');
+    if (whyArc) {
+      gsap.to(whyArc, {
+        strokeDashoffset: 0,
+        ease: 'none',
+        scrollTrigger: { trigger: '#why', start: 'top 60%', end: 'bottom 40%', scrub: 0.8 }
+      });
+    }
+
     // Contact form
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
@@ -937,11 +948,11 @@
           contactForm.style.display = 'none';
           formSuccess.classList.add('show');
         } else {
-          submitBtn.innerHTML = 'Something went wrong — try again';
+          submitBtn.innerHTML = 'Something went wrong, try again';
           submitBtn.disabled = false;
         }
       } catch {
-        submitBtn.innerHTML = 'Something went wrong — try again';
+        submitBtn.innerHTML = 'Something went wrong, try again';
         submitBtn.disabled = false;
       }
     });
