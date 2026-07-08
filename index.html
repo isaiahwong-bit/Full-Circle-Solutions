@@ -253,6 +253,46 @@
     .scroll-line::after { content:''; position:absolute; top:-100%; left:0; width:100%; height:100%; background:#EDC537; animation:pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%{top:-100%} 50%{top:0%} 100%{top:100%} }
 
+    /* ── PROCESS — FULL CIRCLE LOOP ── */
+    .process-stage { position:relative; max-width:1160px; margin:0 auto; display:grid; align-items:stretch; grid-template-columns:1fr minmax(280px,360px) 1fr; grid-template-rows:auto auto; column-gap:clamp(1.5rem,3vw,3.25rem); row-gap:clamp(2rem,4vw,3.5rem); grid-template-areas:"s1 core s2" "s4 core s3"; }
+    @media (max-width:1023px) { .process-stage { grid-template-columns:1fr; grid-template-areas:"core" "s1" "s2" "s3" "s4"; row-gap:0; max-width:560px; } }
+
+    /* Core / ring */
+    .process-core { grid-area:core; position:relative; align-self:stretch; min-height:360px; display:flex; align-items:center; justify-content:center; text-align:center; }
+    .process-ring-svg { position:absolute; inset:0; width:100%; height:100%; }
+    .process-arc-circle { transform-origin:50% 50%; transform:rotate(-90deg); }
+    .process-dots-ring { transform-origin:50% 50%; animation:spin 52s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    @media (prefers-reduced-motion:reduce) { .process-dots-ring { animation:none; } }
+    .process-core-inner { position:relative; z-index:2; max-width:60%; }
+    .process-core-eyebrow { font-weight:600; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:#F44027; }
+    .process-core-head { font-family:'nueva-std-condensed',serif; color:#1A1A1A; font-size:clamp(1.5rem,2.4vw,2.15rem); line-height:1.03; letter-spacing:-0.01em; margin-top:0.55rem; }
+    .process-core-head em { font-style:italic; color:#990808; }
+    .process-core-note { font-size:0.75rem; line-height:1.5; color:rgba(26,26,26,0.5); margin-top:0.75rem; }
+    @media (max-width:1023px) {
+      .process-core { min-height:auto; flex-direction:column; margin-bottom:2.5rem; }
+      .process-ring-svg { position:relative; inset:auto; width:180px; height:180px; }
+      .process-core-inner { max-width:100%; margin-top:1.25rem; }
+    }
+
+    /* Step cards */
+    .process-step { position:relative; background:#F4F2EF; border:1px solid rgba(26,26,26,0.07); border-radius:20px; padding:clamp(1.5rem,2.2vw,2rem); box-shadow:0 22px 45px -26px rgba(153,8,8,0.28), 0 6px 14px -9px rgba(26,26,26,0.12); transition:transform 0.45s cubic-bezier(.25,.1,.25,1), box-shadow 0.45s cubic-bezier(.25,.1,.25,1), border-color 0.45s; }
+    .process-step::before { content:''; position:absolute; top:0; left:clamp(1.5rem,2.2vw,2rem); right:clamp(1.5rem,2.2vw,2rem); height:3px; border-radius:3px; background:var(--step-accent); transform:scaleX(0); transform-origin:left; transition:transform 0.5s cubic-bezier(.25,.1,.25,1); }
+    .process-step:hover { transform:translateY(-6px); border-color:var(--step-accent); box-shadow:0 36px 62px -28px var(--step-shadow), 0 8px 18px -8px rgba(26,26,26,0.14); }
+    .process-step:hover::before { transform:scaleX(1); }
+    .process-step-head { display:flex; align-items:baseline; gap:0.85rem; }
+    .process-num { font-family:'nueva-std-condensed',serif; font-size:clamp(2.5rem,4vw,3.4rem); line-height:0.78; color:var(--step-accent); letter-spacing:-0.02em; flex-shrink:0; }
+    .process-meta { display:flex; flex-direction:column; gap:0.3rem; }
+    .process-eyebrow { font-weight:600; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--step-accent); line-height:1; }
+    .process-step-title { font-family:'nueva-std-condensed',serif; font-size:clamp(1.35rem,2vw,1.7rem); color:#1A1A1A; line-height:1.04; }
+    .process-desc { font-size:0.9rem; line-height:1.6; color:rgba(26,26,26,0.62); margin-top:1rem; }
+    .process-desc em { font-style:italic; color:var(--step-accent); font-weight:500; }
+    .process-pills { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:1.1rem; }
+    @media (max-width:1023px) {
+      .process-step { border-left:2px solid rgba(237,197,55,0.4); border-radius:0 18px 18px 0; margin-left:0.75rem; }
+      .process-step::after { content:''; position:absolute; left:-7px; top:2.1rem; width:12px; height:12px; border-radius:50%; background:var(--step-accent); border:2px solid #EBE7E2; }
+    }
+
     .grain { position:fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.02; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat:repeat; background-size:128px; }
   </style>
 
@@ -283,10 +323,12 @@
       { "@type": "Country", "name": "Australia" }
     ],
     "serviceType": [
+      "Restaurant Business Diagnostics",
       "Hospitality Branding",
       "Restaurant Fit-Out Consulting",
       "Delivery Platform Optimisation",
       "Franchise Support",
+      "Commercial Property Advisory",
       "Business Transition Planning"
     ],
     "knowsAbout": [
@@ -319,6 +361,7 @@
         <span class="nav-brand font-display text-2xl tracking-tight">Full Circle Solutions<span class="text-gold">.</span></span>
       </a>
       <div class="hidden md:flex items-center gap-10">
+        <a href="#process" class="nav-link">Process</a>
         <a href="#services" class="nav-link">Services</a>
         <a href="#why" class="nav-link">Why Us</a>
         <a href="#faq" class="nav-link">FAQ</a>
@@ -329,6 +372,7 @@
   </nav>
 
   <div class="mob-menu" id="mobMenu">
+    <a href="#process" class="mob-link" onclick="closeMenu()">Process</a>
     <a href="#services" class="mob-link" onclick="closeMenu()">Services</a>
     <a href="#why" class="mob-link" onclick="closeMenu()">Why Us</a>
     <a href="#faq" class="mob-link" onclick="closeMenu()">FAQ</a>
@@ -415,23 +459,153 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════════ -->
+  <!-- PROCESS — FULL CIRCLE LOOP          -->
+  <!-- ══════════════════════════════════ -->
+  <!-- ⤵ FIRST-PASS CONTENT: swap titles / copy / pills here to match the client's diagram. Layout + motion stay untouched. -->
+  <section id="process" class="py-24 md:py-32 px-6 md:px-12 lg:px-16 bg-warm relative overflow-hidden">
+    <div class="max-w-[1200px] mx-auto relative z-10">
+
+      <!-- Header -->
+      <div class="text-center mb-16 md:mb-24">
+        <span class="text-terracotta font-body font-semibold text-xs uppercase tracking-[0.15em] reveal block mb-3">How we work</span>
+        <h2 class="font-display text-ink reveal" style="font-size:clamp(2.25rem,5vw,4rem); line-height:1.05; letter-spacing:-0.02em;">Your venue, taken <em style="font-style:italic; color:#F44027;">full circle.</em></h2>
+        <p class="text-ink/50 mt-4 text-base reveal max-w-xl mx-auto" style="line-height:1.6;">One clear path — from the numbers that don't add up, to a profitable group of venues. Here's exactly how it works.</p>
+      </div>
+
+      <!-- Stage -->
+      <div class="process-stage">
+
+        <!-- CORE — the full-circle ring -->
+        <div class="process-core">
+          <svg class="process-ring-svg" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+            <!-- slow-spin dotted ring -->
+            <circle class="process-dots-ring" cx="200" cy="200" r="188" stroke="#EDC537" stroke-opacity="0.3" stroke-width="2" stroke-dasharray="1 13" stroke-linecap="round"/>
+            <!-- dashed track -->
+            <circle cx="200" cy="200" r="150" stroke="#990808" stroke-opacity="0.14" stroke-width="1.5" stroke-dasharray="5 9"/>
+            <!-- draw-on-scroll arc -->
+            <circle class="process-arc-circle" cx="200" cy="200" r="150" stroke="#EDC537" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="942" stroke-dashoffset="942"/>
+            <!-- diagonal node dots — each points toward its step card -->
+            <circle cx="94"  cy="94"  r="6" fill="#990808"/>
+            <circle cx="306" cy="94"  r="6" fill="#F44027"/>
+            <circle cx="306" cy="306" r="6" fill="#EDC537"/>
+            <circle cx="94"  cy="306" r="6" fill="#1A1A1A"/>
+            <!-- clockwise arrowheads (top & bottom of ring) -->
+            <path d="M206 44 L222 50 L206 56 Z" fill="#EDC537"/>
+            <path d="M194 344 L178 350 L194 356 Z" fill="#EDC537"/>
+          </svg>
+          <div class="process-core-inner">
+            <span class="process-core-eyebrow">Our Process</span>
+            <p class="process-core-head">In the red to a <em>profitable group.</em></p>
+            <p class="process-core-note">Every new location starts the circle again.</p>
+          </div>
+        </div>
+
+        <!-- STEP 01 — Gap Analysis -->
+        <article class="process-step" style="grid-area:s1; --step-accent:#990808; --step-shadow:rgba(153,8,8,0.45);">
+          <div class="process-step-head">
+            <span class="process-num">01</span>
+            <div class="process-meta">
+              <span class="process-eyebrow">Diagnose</span>
+              <h3 class="process-step-title">Gap Analysis</h3>
+            </div>
+          </div>
+          <p class="process-desc">We go through every number in your business — cost of goods, labour, rent, overheads — and benchmark each against where it <em>should</em> be. You'll see exactly where the money's leaking.</p>
+          <div class="process-pills">
+            <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">P&amp;L Deep-Dive</span>
+            <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Cost Benchmarking</span>
+            <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Rent Review</span>
+            <span class="band-pill" style="border-color:rgba(153,8,8,0.25); color:#990808;">Margin Targets</span>
+          </div>
+        </article>
+
+        <!-- STEP 02 — Consulting -->
+        <article class="process-step" style="grid-area:s2; --step-accent:#F44027; --step-shadow:rgba(244,64,39,0.4);">
+          <div class="process-step-head">
+            <span class="process-num">02</span>
+            <div class="process-meta">
+              <span class="process-eyebrow">Strategise</span>
+              <h3 class="process-step-title">Consulting</h3>
+            </div>
+          </div>
+          <p class="process-desc">We turn the findings into a clear plan — what to fix first, what it's <em>worth</em>, and the path from where you are to where you should be.</p>
+          <div class="process-pills">
+            <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Findings Report</span>
+            <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Roadmap</span>
+            <span class="band-pill" style="border-color:rgba(244,64,39,0.25); color:#F44027;">Priorities</span>
+          </div>
+        </article>
+
+        <!-- STEP 03 — Implementation -->
+        <article class="process-step" style="grid-area:s3; --step-accent:#A87A12; --step-shadow:rgba(168,122,18,0.4);">
+          <div class="process-step-head">
+            <span class="process-num">03</span>
+            <div class="process-meta">
+              <span class="process-eyebrow">Optimise</span>
+              <h3 class="process-step-title">Implementation</h3>
+            </div>
+          </div>
+          <p class="process-desc">We execute: <em>branding</em> to lift your prices and perceived value, menu optimisation, then managing your three revenue channels — dining, booking platforms and delivery — plus training your team.</p>
+          <div class="process-pills">
+            <span class="band-pill" style="border-color:rgba(168,122,18,0.3); color:#A87A12;">Branding</span>
+            <span class="band-pill" style="border-color:rgba(168,122,18,0.3); color:#A87A12;">Menu &amp; Pricing</span>
+            <span class="band-pill" style="border-color:rgba(168,122,18,0.3); color:#A87A12;">Delivery Platforms</span>
+            <span class="band-pill" style="border-color:rgba(168,122,18,0.3); color:#A87A12;">Bookings</span>
+            <span class="band-pill" style="border-color:rgba(168,122,18,0.3); color:#A87A12;">Training</span>
+          </div>
+        </article>
+
+        <!-- STEP 04 — Growth & Expansion -->
+        <article class="process-step" style="grid-area:s4; --step-accent:#1A1A1A; --step-shadow:rgba(26,26,26,0.35);">
+          <div class="process-step-head">
+            <span class="process-num">04</span>
+            <div class="process-meta">
+              <span class="process-eyebrow">Scale</span>
+              <h3 class="process-step-title">Growth &amp; Expansion</h3>
+            </div>
+          </div>
+          <p class="process-desc">Once you're optimised and profitable, we scale you — second and third locations (where the <em>real</em> money is), franchising, and commercial property, from lease proposals to buying the building.</p>
+          <div class="process-pills">
+            <span class="band-pill" style="border-color:rgba(26,26,26,0.2); color:#1A1A1A;">2nd+ Locations</span>
+            <span class="band-pill" style="border-color:rgba(26,26,26,0.2); color:#1A1A1A;">Franchising</span>
+            <span class="band-pill" style="border-color:rgba(26,26,26,0.2); color:#1A1A1A;">Lease Proposals</span>
+            <span class="band-pill" style="border-color:rgba(26,26,26,0.2); color:#1A1A1A;">Property Acquisition</span>
+          </div>
+        </article>
+
+      </div><!-- /process-stage -->
+
+      <!-- Process CTA -->
+      <div class="text-center mt-16 md:mt-20 reveal">
+        <a href="#contact" class="btn-gold">
+          Start With a Gap Analysis
+          <svg class="arr w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- GOLD MARQUEE -->
   <section class="marquee-band py-4 md:py-5">
     <div class="marquee-track">
+      <span class="marquee-word text-2xl md:text-3xl">Diagnose</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Launch</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Branding</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Grow</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Delivery</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Scale</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Franchise</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Property</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Transition</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Sales</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Diagnose</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Launch</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Branding</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Grow</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Delivery</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Scale</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Franchise</span><span class="marquee-dot"></span>
+      <span class="marquee-word text-2xl md:text-3xl">Property</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Transition</span><span class="marquee-dot"></span>
       <span class="marquee-word text-2xl md:text-3xl">Sales</span><span class="marquee-dot"></span>
     </div>
@@ -791,9 +965,11 @@
               <div class="select-wrap">
                 <select id="service" name="service" required onchange="this.classList.toggle('has-value', this.value !== '')">
                   <option value="" disabled selected>Select a service area</option>
+                  <option value="Gap Analysis / Business Review">Gap Analysis / Business Review</option>
                   <option value="Branding & Fit-Out">Branding & Fit-Out</option>
                   <option value="Delivery Platform Optimisation">Delivery Platform Optimisation</option>
                   <option value="Franchise Support">Franchise Support</option>
+                  <option value="Property & Expansion">Property & Expansion</option>
                   <option value="Transition Planning">Transition Planning</option>
                   <option value="Something else">Something else</option>
                 </select>
@@ -1013,6 +1189,20 @@
         scrollTrigger: { trigger: '#why', start: 'top 60%', end: 'bottom 40%', scrub: 0.8 }
       });
     }
+
+    // Process — full-circle ring draws on scroll + step cards stagger in
+    const procArc = document.querySelector('.process-arc-circle');
+    if (procArc) {
+      gsap.to(procArc, {
+        strokeDashoffset: 0,
+        ease: 'none',
+        scrollTrigger: { trigger: '#process', start: 'top 70%', end: 'center 45%', scrub: 0.8 }
+      });
+    }
+    gsap.utils.toArray('.process-step').forEach((el, i) => {
+      gsap.set(el, { opacity: 0, y: 40 });
+      gsap.to(el, { opacity: 1, y: 0, duration: 0.8, delay: i * 0.12, ease: 'power3.out', scrollTrigger: { trigger: '.process-stage', start: 'top 80%', toggleActions: 'play none none none' } });
+    });
 
     // Contact form
     const contactForm = document.getElementById('contactForm');
